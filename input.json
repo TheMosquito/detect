@@ -6,8 +6,8 @@
       "versionRange": "[0.0.0,INFINITY)",
       "variables": {
         "MQTT_TOPIC":"/detect",
-        "EVTSTREAMS_TOPIC":"joe.pearson_us.ibm.com.dcmartin_us.ibm.com_yolo2msghub",
-        "EVTSTREAMS_API_KEY":"u7c3q9BpkJIdUOaEzMPOhEZgNjlFWY2MIUJICiEYW368Tcmw",
+        "EVTSTREAMS_TOPIC":"xxx",
+        "EVTSTREAMS_API_KEY":"xxx",
         "EVTSTREAMS_BROKER_URL":"kafka05-prod02.messagehub.services.us-south.bluemix.net:9093,kafka01-prod02.messagehub.services.us-south.bluemix.net:9093,kafka03-prod02.messagehub.services.us-south.bluemix.net:9093,kafka04-prod02.messagehub.services.us-south.bluemix.net:9093,kafka02-prod02.messagehub.services.us-south.bluemix.net:9093"
       }
     }
