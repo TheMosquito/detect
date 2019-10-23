@@ -1,0 +1,45 @@
+{
+  "org": "$HZN_ORG_ID",
+  "label": "$SERVICE_NAME for $ARCH",
+  "public": true,
+  "url": "$SERVICE_NAME",
+  "version": "$SERVICE_VERSION",
+  "arch": "$ARCH",
+  "sharable": "exclusive",
+  "requiredServices": [
+    { "org": "$HZN_ORG_ID", "url": "mqtt", "version": "1.0.0", "arch": "$ARCH" }
+  ],
+  "userInput": [
+    {
+      "name": "MQTT_TOPIC",
+      "label": "MQTT topic to read from (and send to kafka)",
+      "type": "string",
+      "defaultValue": ""
+    },
+    {
+      "name": "EVTSTREAMS_TOPIC",
+      "label": "The kafka topic to send to",
+      "type": "string",
+      "defaultValue": ""
+    },
+    {
+      "name": "EVTSTREAMS_API_KEY",
+      "label": "API key for this kafka instance in IBM EventStreams",
+      "type": "string",
+      "defaultValue": ""
+    },
+    {
+      "name": "EVTSTREAMS_BROKER_URL",
+      "label": "Broker URLs for this kafka instance in IBM EventStreams",
+      "type": "string",
+      "defaultValue": ""
+    }
+  ],
+  "deployment": {
+    "services": {
+      "$SERVICE_NAME": {
+        "image": "${DOCKER_IMAGE_BASE}_$ARCH:$SERVICE_VERSION"
+      }
+    }
+  }
+}

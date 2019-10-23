@@ -1,0 +1,30 @@
+{
+  "name": "pattern-yolo",
+  "services": [
+    {
+      "serviceUrl": "mqtt2kafka",
+      "serviceOrgid": "mdye@us.ibm.com",
+      "serviceArch": "arm",
+      "serviceVersions": [ { "version": "1.0.0" } ]
+    },
+    {
+      "serviceUrl": "watcher",
+      "serviceOrgid": "mdye@us.ibm.com",
+      "serviceArch": "arm",
+      "serviceVersions": [ { "version": "1.0.0" } ]
+    },
+    {
+      "serviceUrl": "yolo",
+      "serviceOrgid": "mdye@us.ibm.com",
+      "serviceArch": "arm",
+      "serviceVersions": [ { "version": "1.0.0" } ]
+    },
+    {
+      "serviceUrl": "cam",
+      "serviceOrgid": "mdye@us.ibm.com",
+      "serviceArch": "arm",
+      "serviceVersions": [ { "version": "1.0.0" } ]
+    }
+  ]
+}
+

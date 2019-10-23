@@ -1,0 +1,48 @@
+{
+  "org": "$HZN_ORG_ID",
+  "label": "$SERVICE_NAME for $ARCH",
+  "public": true,
+  "url": "$SERVICE_NAME",
+  "version": "$SERVICE_VERSION",
+  "arch": "$ARCH",
+  "sharable": "singleton",
+  "requiredServices": [ 
+    { "org": "$HZN_ORG_ID", "url": "mqtt", "version": "1.0.0", "arch": "$ARCH" }
+  ],
+  "userInput": [
+    {
+      "name": "YOLO_ENTITY",
+      "label": "entity to detect",
+      "type": "string",
+      "defaultValue": "person"
+    },
+    {
+      "name": "YOLO_PERIOD",
+      "label": "sec between updates",
+      "type": "int",
+      "defaultValue": "0"
+    },
+    {
+      "name": "YOLO_IN_TOPIC",
+      "label": "MQTT input topic",
+      "type": "int",
+      "defaultValue": "/cam"
+    },
+    {
+      "name": "YOLO_OUT_TOPIC",
+      "label": "MQTT output topic",
+      "type": "int", 
+      "defaultValue": "/detect"
+    }
+  ],
+  "deployment": {
+    "services": {
+      "$SERVICE_NAME": {
+        "image": "${DOCKER_IMAGE_BASE}_$ARCH:$SERVICE_VERSION"
+      }
+    }
+  },
+  "tmpfs": {
+    "size": 8192000
+  }
+}

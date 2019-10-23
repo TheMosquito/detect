@@ -1,0 +1,11 @@
+FROM ubuntu:bionic
+
+RUN apt-get update && apt-get install -q -y --no-install-recommends \
+  mosquitto-clients \
+  fswebcam
+
+COPY mock.jpg /
+COPY cam.sh /
+WORKDIR /
+CMD ["./cam.sh"]
+

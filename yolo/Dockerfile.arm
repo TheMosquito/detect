@@ -1,0 +1,35 @@
+ARG BUILD_FROM=ubuntu:bionic
+
+FROM $BUILD_FROM as darknet
+
+ENV LANG C.UTF-8
+
+RUN apt-get update && apt-get install -q -y --no-install-recommends \
+  curl \
+  build-essential \
+  socat \
+  fswebcam \
+  jq \
+  git
+
+# Copy darknet
+COPY /darknet /darknet
+
+# Build darknet
+RUN \
+    cd /darknet \
+    \
+    && make
+
+FROM darknet
+
+RUN apt-get update && apt-get install -q -y --no-install-recommends \
+  mosquitto-clients
+
+# Copy compiled darknet
+COPY --from=darknet /darknet /darknet
+
+COPY yolo.sh /
+WORKDIR /
+CMD [ "/yolo.sh" ]
+
