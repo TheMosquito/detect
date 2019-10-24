@@ -2,7 +2,7 @@
 
 # Defaults
 if [ -z "${YOLO_ENTITY:-}" ]; then YOLO_ENTITY="person"; fi
-if [ -z "${YOLO_PERIOD:-}" ]; then YOLO_PERIOD=0; fi
+if [ -z "${YOLO_PERIOD:-}" ]; then YOLO_PERIOD=5; fi
 if [ -z "${YOLO_IN_TOPIC:-}" ]; then YOLO_IN_TOPIC="/cam"; fi
 if [ -z "${YOLO_OUT_TOPIC:-}" ]; then YOLO_OUT_TOPIC="/detect"; fi
 
