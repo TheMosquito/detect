@@ -32,6 +32,32 @@
     {
       "serviceUrl": "mqtt2kafka",
       "serviceOrgid": "mdye@us.ibm.com",
+      "serviceArch": "arm64",
+      "serviceVersions": [ { "version": "1.0.0" } ]
+    },
+    {
+      "serviceUrl": "watcher",
+      "serviceOrgid": "mdye@us.ibm.com",
+      "serviceArch": "arm64",
+      "serviceVersions": [ { "version": "1.0.0" } ]
+    },
+    {
+      "serviceUrl": "yolo",
+      "serviceOrgid": "mdye@us.ibm.com",
+      "serviceArch": "arm64",
+      "serviceVersions": [ { "version": "1.0.0" } ]
+    },
+    {
+      "serviceUrl": "cam",
+      "serviceOrgid": "mdye@us.ibm.com",
+      "serviceArch": "arm64",
+      "serviceVersions": [ { "version": "1.0.0" } ]
+    },
+
+
+    {
+      "serviceUrl": "mqtt2kafka",
+      "serviceOrgid": "mdye@us.ibm.com",
       "serviceArch": "amd64",
       "serviceVersions": [ { "version": "1.0.0" } ]
     },

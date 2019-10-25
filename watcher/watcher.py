@@ -83,7 +83,7 @@ if __name__ == '__main__':
       OUT = \
         '<html>\n' + \
         ' <head>\n' + \
-        '   <meta http-equiv="refresh" content="30">\n' + \
+        '   <meta http-equiv="refresh" content="1">\n' + \
         '   <title>Watcher</title>\n' + \
         ' </head>\n' + \
         ' <body>\n' + \

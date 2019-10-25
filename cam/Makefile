@@ -31,7 +31,7 @@ clean:
 
 test-cam:
 	-docker rm -f cam 2>/dev/null || :
-	docker run --rm -d --privileged --name cam --network mqtt-net --network-alias cam $(DOCKER_IMAGE_BASE)_$(ARCH):$(SERVICE_VERSION)
+	docker run --rm -d -e CAM_DEVICE="V4L2:/dev/video1" --privileged --name cam --network mqtt-net --network-alias cam $(DOCKER_IMAGE_BASE)_$(ARCH):$(SERVICE_VERSION)
 	docker exec -it cam sh -c 'apt install -y jq'
 test-get:
 	docker exec -it cam sh -c 'mosquitto_sub -h mqtt -p 1883 -t /cam -C 1 | jq --raw-output --join-output ".cam.image"' | base64 -d > foo.jpg
