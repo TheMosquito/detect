@@ -5,6 +5,18 @@ register-yolo:
 publish-pattern:
 	hzn exchange pattern publish -f pattern-yolo.json
 
+test-all:
+	make -C mqtt
+	make -C mqtt test-broker
+	make -C cam
+	make -C cam test-cam
+	make -C watcher
+	make -C watcher test-watcher
+	make -C yolo
+	make -C yolo test-yolo
+	make -C mqtt2kafka
+	make -C mqtt2kafka test-kafka
+
 publish-all:
 	make -C mqtt
 	make -C mqtt push

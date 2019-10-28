@@ -65,14 +65,29 @@ if __name__ == '__main__':
     buffer.seek(0)
     return send_file(buffer, mimetype='image/jpg')
   
+  @webapp.route("/v1/images/source.jpg")
+  def get_yolo_source():
+    if last_detect:
+      j = json.loads(last_detect)
+      i = base64.b64decode(j['detect']['source'])
+      buffer = BytesIO()
+      buffer.write(i)
+      buffer.seek(0)
+      return send_file(buffer, mimetype='image/jpg')
+    else:
+      return ""
+  
   @webapp.route("/v1/images/yolo.jpg")
   def get_yolo_image():
-    j = json.loads(last_detect)
-    i = base64.b64decode(j['detect']['image'])
-    buffer = BytesIO()
-    buffer.write(i)
-    buffer.seek(0)
-    return send_file(buffer, mimetype='image/jpg')
+    if last_detect:
+      j = json.loads(last_detect)
+      i = base64.b64decode(j['detect']['image'])
+      buffer = BytesIO()
+      buffer.write(i)
+      buffer.seek(0)
+      return send_file(buffer, mimetype='image/jpg')
+    else:
+      return ""
   
   @webapp.route("/v1/watch")
   def get_cam():
@@ -88,6 +103,7 @@ if __name__ == '__main__':
         ' </head>\n' + \
         ' <body>\n' + \
         '  <img src="/v1/images/cam.jpg" alt="Raw Camera Image" />\n' + \
+        '  <img src="/v1/images/source.jpg" alt="Yolo Source Image" />\n' + \
         '  <img src="/v1/images/yolo.jpg" alt="Yolo Prediction Image" />\n' + \
         ' </body>\n' + \
         '</html>\n'

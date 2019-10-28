@@ -49,8 +49,8 @@ while true; do
   # Base64-encode the annotated image
   OUT_IMAGE_B64=$(base64 -w 0 -i "${OUT_JPG}")
 
-  # Publish the encoded image to the MQTT broker (qos=0, fire and forget)
-  ${MQTT_PUB_COMMAND} --qos 0 -t ${YOLO_OUT_TOPIC} -m "{ \"detect\": { \"tool\":\"yolo\", \"date\":\"$(date +%s)\", \"time\":\"${TIME}\", \"entity\":\"${YOLO_ENTITY}\", \"count\":${COUNT}, \"image\":\"${OUT_IMAGE_B64}\" } }"
+  # Publish the encoded images to the MQTT broker (qos=0, fire and forget)
+  ${MQTT_PUB_COMMAND} --qos 0 -t ${YOLO_OUT_TOPIC} -m "{ \"detect\": { \"tool\":\"yolo\", \"date\":\"$(date +%s)\", \"time\":\"${TIME}\", \"entity\":\"${YOLO_ENTITY}\", \"count\":${COUNT}, \"source\":\"${IN_IMAGE_B64}\", \"image\":\"${OUT_IMAGE_B64}\" } }"
 
  # Pause for some number of seconds before going again
   sleep "${YOLO_PERIOD}"

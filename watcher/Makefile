@@ -29,6 +29,10 @@ clean:
 
 # ----------------------------------------------------------------------------
 
+dev-watcher:
+	-docker rm -f watcher 2>/dev/null || :
+	docker run -it -p 0.0.0.0:5200:5200 --name watcher --network mqtt-net --network-alias watcher $(DOCKER_IMAGE_BASE)_$(ARCH):$(SERVICE_VERSION) /bin/sh
+
 test-watcher:
 	-docker rm -f watcher 2>/dev/null || :
 	docker run --rm -d -p 0.0.0.0:5200:5200 --name watcher --network mqtt-net --network-alias watcher $(DOCKER_IMAGE_BASE)_$(ARCH):$(SERVICE_VERSION)
