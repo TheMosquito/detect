@@ -5,79 +5,79 @@
 
     {
       "serviceUrl": "mqtt2kafka",
-      "serviceOrgid": "mdye@us.ibm.com",
+      "serviceOrgid": "$HZN_ORG_ID",
       "serviceArch": "arm",
-      "serviceVersions": [ { "version": "1.0.0" } ]
+      "serviceVersions": [ { "version": "1.0.1" } ]
     },
     {
       "serviceUrl": "watcher",
-      "serviceOrgid": "mdye@us.ibm.com",
+      "serviceOrgid": "$HZN_ORG_ID",
       "serviceArch": "arm",
-      "serviceVersions": [ { "version": "1.0.0" } ]
+      "serviceVersions": [ { "version": "1.0.1" } ]
     },
     {
       "serviceUrl": "yolo",
-      "serviceOrgid": "mdye@us.ibm.com",
+      "serviceOrgid": "$HZN_ORG_ID",
       "serviceArch": "arm",
-      "serviceVersions": [ { "version": "1.0.0" } ]
+      "serviceVersions": [ { "version": "1.0.1" } ]
     },
     {
       "serviceUrl": "cam",
-      "serviceOrgid": "mdye@us.ibm.com",
+      "serviceOrgid": "$HZN_ORG_ID",
       "serviceArch": "arm",
-      "serviceVersions": [ { "version": "1.0.0" } ]
+      "serviceVersions": [ { "version": "1.0.1" } ]
     },
 
 
     {
       "serviceUrl": "mqtt2kafka",
-      "serviceOrgid": "mdye@us.ibm.com",
+      "serviceOrgid": "$HZN_ORG_ID",
       "serviceArch": "arm64",
-      "serviceVersions": [ { "version": "1.0.0" } ]
+      "serviceVersions": [ { "version": "1.0.1" } ]
     },
     {
       "serviceUrl": "watcher",
-      "serviceOrgid": "mdye@us.ibm.com",
+      "serviceOrgid": "$HZN_ORG_ID",
       "serviceArch": "arm64",
-      "serviceVersions": [ { "version": "1.0.0" } ]
+      "serviceVersions": [ { "version": "1.0.1" } ]
     },
     {
       "serviceUrl": "yolo",
-      "serviceOrgid": "mdye@us.ibm.com",
+      "serviceOrgid": "$HZN_ORG_ID",
       "serviceArch": "arm64",
-      "serviceVersions": [ { "version": "1.0.0" } ]
+      "serviceVersions": [ { "version": "1.0.1" } ]
     },
     {
       "serviceUrl": "cam",
-      "serviceOrgid": "mdye@us.ibm.com",
+      "serviceOrgid": "$HZN_ORG_ID",
       "serviceArch": "arm64",
-      "serviceVersions": [ { "version": "1.0.0" } ]
+      "serviceVersions": [ { "version": "1.0.1" } ]
     },
 
 
     {
       "serviceUrl": "mqtt2kafka",
-      "serviceOrgid": "mdye@us.ibm.com",
+      "serviceOrgid": "$HZN_ORG_ID",
       "serviceArch": "amd64",
-      "serviceVersions": [ { "version": "1.0.0" } ]
+      "serviceVersions": [ { "version": "1.0.1" } ]
     },
     {
       "serviceUrl": "watcher",
-      "serviceOrgid": "mdye@us.ibm.com",
+      "serviceOrgid": "$HZN_ORG_ID",
       "serviceArch": "amd64",
-      "serviceVersions": [ { "version": "1.0.0" } ]
+      "serviceVersions": [ { "version": "1.0.1" } ]
     },
     {
       "serviceUrl": "yolo",
-      "serviceOrgid": "mdye@us.ibm.com",
+      "serviceOrgid": "$HZN_ORG_ID",
       "serviceArch": "amd64",
-      "serviceVersions": [ { "version": "1.0.0" } ]
+      "serviceVersions": [ { "version": "1.0.1" } ]
     },
     {
       "serviceUrl": "cam",
-      "serviceOrgid": "mdye@us.ibm.com",
+      "serviceOrgid": "$HZN_ORG_ID",
       "serviceArch": "amd64",
-      "serviceVersions": [ { "version": "1.0.0" } ]
+      "serviceVersions": [ { "version": "1.0.1" } ]
     }
   ]
 }

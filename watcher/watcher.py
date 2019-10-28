@@ -102,9 +102,18 @@ if __name__ == '__main__':
         '   <title>Watcher</title>\n' + \
         ' </head>\n' + \
         ' <body>\n' + \
-        '  <img src="/v1/images/cam.jpg" alt="Raw Camera Image" />\n' + \
-        '  <img src="/v1/images/source.jpg" alt="Yolo Source Image" />\n' + \
-        '  <img src="/v1/images/yolo.jpg" alt="Yolo Prediction Image" />\n' + \
+        '  <table>\n' + \
+        '   <tr>\n' + \
+        '    <th><h2>Live</h2></th>\n' + \
+        '    <th><h2>Source</h2></th>\n' + \
+        '    <th><h2>Prediction</h2></th>\n' + \
+        '   </tr>\n' + \
+        '   <tr>\n' + \
+        '    <td><img width="100px" src="/v1/images/cam.jpg" alt="Raw Camera Image" /></td>\n' + \
+        '    <td><img src="/v1/images/source.jpg" alt="Yolo Source Image" /></td>\n' + \
+        '    <td><img src="/v1/images/yolo.jpg" alt="Yolo Prediction Image" /></td>\n' + \
+        '   </tr>\n' + \
+        '  </table>\n' + \
         ' </body>\n' + \
         '</html>\n'
       return (OUT)

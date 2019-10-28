@@ -1,8 +1,7 @@
 {
-    "HZN_ORG_ID": "mdye@us.ibm.com",
     "MetadataVars": {
         "DOCKER_IMAGE_BASE": "ibmosquito/yolo",
         "SERVICE_NAME": "yolo",
-        "SERVICE_VERSION": "1.0.0"
+        "SERVICE_VERSION": "1.0.1"
     }
 }

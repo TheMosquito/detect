@@ -1,0 +1,107 @@
+#!/bin/bash
+
+# Mosquito's IEC4D Exchange switcher
+
+# Configure "creds" below to contain your directory of directories of creds.
+# Each subdirectory should contain:
+#   henv    (env variable settings, i.e., "mycreds" stuff)
+#   horizon (a suitable "/etc/default/horizon" file)
+#   icp.crt (the Exchange self-signed cert file -- required for ICP instances)
+#   hosts   (a line to add into "/etc/hosts" -- reuired for Slayer instances)
+creds=~/creds
+
+# Requires a single CLI argument the "creds" subdirectory name to use
+hznenv="$1"
+
+echo "This script will configure IEC4D for \"${hznenv}\"..."
+if [ ! -d ${creds}/${hznenv} ]; then
+  echo "Unknown Horizon environment."
+else
+
+  echo "Pausing... (use Ctrl-C now to abort)"
+  sleep 5
+
+  echo "Checking current registration status..."
+  reg=`hzn node list | jq .configstate.state`
+  if [ "configured" == "${reg}" ]; then
+    echo "  Node is registered. Attempting unregister..."
+    hzn unregister -frD >/dev/null 2>&1
+    echo "  Re-checking..."
+  fi
+  reg=`hzn node list | jq .configstate.state`
+  if [ '"unconfigured"' != "${reg}" ]; then
+    echo "  ERROR: Node wedged in \"configuring\" or \"unconfiguring\" state!"
+    echo "  ERROR: You will likely need to \"apt purge\" and reinstall IEC4D."
+  else
+
+    echo "  Node is unregistered."
+
+    echo "Configuring the Horizon Agent for this Exchange..."
+    running=`service horizon status 2>/dev/null | grep -c 'Active: active (running)'`
+    if [ "1" -eq "$running" ]; then
+      echo "  Stopping Horizon Agent..."
+      sudo systemctl stop horizon >/dev/null 2>&1
+      running=`service horizon status 2>/dev/null | grep -c 'Active: active (running)'`
+      if [ "1" -eq "$running" ]; then
+        echo "  Horizon Agent is stopped."
+      else
+        echo "  WARNING: Failed to stop Horizon Agent."
+      fi
+    fi
+  
+    echo "  Updating /etc/default/horizon..."
+    sudo cp ${creds}/${hznenv}/horizon /etc/default/horizon
+    sudo grep 'URL' /etc/default/horizon | sed 's/^/  /'
+  
+    echo "  Restarting Horizon Agent..."
+    sudo systemctl restart horizon
+    sleep 5
+    running=`service horizon status 2>/dev/null | grep -c 'Active: active (running)'`
+    if [ "1" -eq "$running" ]; then
+      echo "  Horizon Agent is running."
+    else
+      echo "  WARNING: Failed to start Horizon Agent."
+    fi
+  
+    if [ -f ${creds}/${hznenv}/hosts ]; then
+      echo "Configuring \"/etc/hosts\" for this Slayer instance..."
+      host=`head -1 ${creds}/${hznenv}/hosts`
+      hasone=`grep -c '\.icp' /etc/hosts`
+      if [ "1" -eq "$hasone" ]; then
+        echo "  Updating hosts file..."
+        sudo sed -i "s|.*\.icp|$host|" /etc/hosts
+      else
+        echo "  Appending onto hosts file..."
+        sudo sh -c "echo '${host}' >> /etc/hosts"
+      fi
+      echo "  Hosts file updated for Slayer:"
+      echo -n "  "
+      sudo grep '\.icp' /etc/hosts
+    fi
+  
+    if [ -f ${creds}/${hznenv}/icp.crt ]; then
+      echo "Configuring this host to trust the Exchange cert..."
+      sudo cp ${creds}/${hznenv}/icp.crt /usr/local/share/ca-certificates >/dev/null 2>&1
+      sudo update-ca-certificates >/dev/null 2>&1
+      echo "  Cert installed."
+    fi
+  
+    echo "Sourcing HZN_ credentials..."
+    . ${creds}/${hznenv}/henv
+    printenv | grep 'HZN_' | sed 's/^/  /'
+  
+    echo "Configured for IEC4D on \"${hznenv}\":"
+    hzn node list | grep _api | sed 's/.*: "/  /;s/",//'
+    hzn version | sed 's/^/  /'
+    echo -n "  Horizon Exchange version: "
+    hzn exchange version
+    echo " "
+    echo "Don't forget to create a key for this env if doing development:"
+    echo "  hzn key create -f <com> <email>"
+    docker login >/dev/null 2>&1
+    echo " "
+    echo "Validate your credentials with:"
+    echo "  hzn exchange user list"
+    echo " "
+  fi
+fi
