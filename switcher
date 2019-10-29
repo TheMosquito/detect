@@ -23,7 +23,7 @@ else
 
   echo "Checking current registration status..."
   reg=`hzn node list | jq .configstate.state`
-  if [ "configured" == "${reg}" ]; then
+  if [ '"configured"' == "${reg}" ]; then
     echo "  Node is registered. Attempting unregister..."
     hzn unregister -frD >/dev/null 2>&1
     echo "  Re-checking..."

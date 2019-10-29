@@ -13,13 +13,13 @@
       "serviceUrl": "watcher",
       "serviceOrgid": "$HZN_ORG_ID",
       "serviceArch": "arm",
-      "serviceVersions": [ { "version": "1.0.1" } ]
+      "serviceVersions": [ { "version": "1.0.3" } ]
     },
     {
       "serviceUrl": "yolo",
       "serviceOrgid": "$HZN_ORG_ID",
       "serviceArch": "arm",
-      "serviceVersions": [ { "version": "1.0.1" } ]
+      "serviceVersions": [ { "version": "1.0.2" } ]
     },
     {
       "serviceUrl": "cam",
