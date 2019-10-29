@@ -17,6 +17,9 @@ MQTT_CAM_TOPIC = '/cam'
 MQTT_DETECT_TOPIC = '/detect'
 FLASK_BIND_ADDRESS = '0.0.0.0'
 FLASK_PORT = 5200
+DUMMY_CAM_IMAGE='/dummy_live.jpg'
+DUMMY_SOURCE_IMAGE='/dummy_source.jpg'
+DUMMY_DETECT_IMAGE='/dummy_detect.jpg'
 
 # Globals for the cached JSON data (last messages on these MQTT topics)
 last_cam = None
@@ -34,11 +37,11 @@ if __name__ == '__main__':
   class CamThread(threading.Thread):
     def run(self):
       global last_cam
-      print("\nCam topic monitor thread started!")
+      # print("\nCam topic monitor thread started!")
       CAM_COMMAND = MQTT_SUB_COMMAND + '-t ' + MQTT_CAM_TOPIC
       while True:
         last_cam = subprocess.check_output(CAM_COMMAND, shell=True)
-        print("\n\nMessage received on cam topic...\n")
+        # print("\n\nMessage received on cam topic...\n")
         # print(last_cam)
         # print("\nSleeping for " + str(5) + " seconds...\n")
         time.sleep(5)
@@ -47,25 +50,28 @@ if __name__ == '__main__':
   class YoloThread(threading.Thread):
     def run(self):
       global last_detect
-      print("\nDetect topic monitor thread started!")
+      # print("\nDetect topic monitor thread started!")
       DETECT_COMMAND = MQTT_SUB_COMMAND + '-t ' + MQTT_DETECT_TOPIC
       while True:
         last_detect = subprocess.check_output(DETECT_COMMAND, shell=True)
-        print("\n\nMessage received on detect topic...\n")
+        # print("\n\nMessage received on detect topic...\n")
         # print(last_detect)
         # print("\nSleeping for " + str(5) + " seconds...\n")
         time.sleep(5)
 
-  @webapp.route("/v1/images/cam.jpg")
+  @webapp.route("/images/cam.jpg")
   def get_cam_image():
-    j = json.loads(last_cam)
-    i = base64.b64decode(j['cam']['image'])
-    buffer = BytesIO()
-    buffer.write(i)
-    buffer.seek(0)
-    return send_file(buffer, mimetype='image/jpg')
-  
-  @webapp.route("/v1/images/source.jpg")
+    if last_cam:
+      j = json.loads(last_cam)
+      i = base64.b64decode(j['cam']['image'])
+      buffer = BytesIO()
+      buffer.write(i)
+      buffer.seek(0)
+      return send_file(buffer, mimetype='image/jpg')
+    else:
+      return send_file(DUMMY_CAM_IMAGE)
+
+  @webapp.route("/images/source.jpg")
   def get_yolo_source():
     if last_detect:
       j = json.loads(last_detect)
@@ -75,9 +81,9 @@ if __name__ == '__main__':
       buffer.seek(0)
       return send_file(buffer, mimetype='image/jpg')
     else:
-      return ""
-  
-  @webapp.route("/v1/images/yolo.jpg")
+      return send_file(DUMMY_SOURCE_IMAGE)
+
+  @webapp.route("/images/yolo.jpg")
   def get_yolo_image():
     if last_detect:
       j = json.loads(last_detect)
@@ -87,36 +93,53 @@ if __name__ == '__main__':
       buffer.seek(0)
       return send_file(buffer, mimetype='image/jpg')
     else:
-      return ""
-  
-  @webapp.route("/v1/watch")
+      return send_file(DUMMY_DETECT_IMAGE)
+
+  @webapp.route("/")
   def get_cam():
-    if None == last_cam:
-      return '{"error": "no data yet"}\n'
-    else:
-      j = json.loads(last_cam)
-      OUT = \
-        '<html>\n' + \
-        ' <head>\n' + \
-        '   <meta http-equiv="refresh" content="1">\n' + \
-        '   <title>Watcher</title>\n' + \
-        ' </head>\n' + \
-        ' <body>\n' + \
-        '  <table>\n' + \
-        '   <tr>\n' + \
-        '    <th><h2>Live</h2></th>\n' + \
-        '    <th><h2>Source</h2></th>\n' + \
-        '    <th><h2>Prediction</h2></th>\n' + \
-        '   </tr>\n' + \
-        '   <tr>\n' + \
-        '    <td><img width="100px" src="/v1/images/cam.jpg" alt="Raw Camera Image" /></td>\n' + \
-        '    <td><img src="/v1/images/source.jpg" alt="Yolo Source Image" /></td>\n' + \
-        '    <td><img src="/v1/images/yolo.jpg" alt="Yolo Prediction Image" /></td>\n' + \
-        '   </tr>\n' + \
-        '  </table>\n' + \
-        ' </body>\n' + \
-        '</html>\n'
-      return (OUT)
+    OUT = \
+      '<html>\n' + \
+      ' <head>\n' + \
+      '   <title>Watcher</title>\n' + \
+      ' </head>\n' + \
+      ' <body>\n' + \
+      '   <table>\n' + \
+      '     <tr>\n' + \
+      '       <th><h2>Live</h2></th>\n' + \
+      '       <th><h2>Source</h2></th>\n' + \
+      '       <th><h2>Prediction</h2></th>\n' + \
+      '     </tr>\n' + \
+      '     <tr>\n' + \
+      '       <td><img id="live" width="160px" src="/images/cam.jpg" alt="Raw Camera Image" /></td>\n' + \
+      '       <td><img id="source" src="/images/source.jpg" alt="Yolo Source Image" /></td>\n' + \
+      '       <td><img id="detect" src="/images/yolo.jpg" alt="Yolo Prediction Image" /></td>\n' + \
+      '     </tr>\n' + \
+      '   </table>\n' + \
+      '   <script>\n' + \
+      '     function refresh(node) {\n' + \
+      '       var t = 500;\n' + \
+      '       (function startRefresh() {\n' + \
+      '         var address;\n' + \
+      '         if(node.src.indexOf("?")>-1)\n' + \
+      '           address = node.src.split("?")[0];\n' + \
+      '         else\n' + \
+      '           address = node.src;\n' + \
+      '         node.src = address+"?time="+new Date().getTime();\n' + \
+      '         setTimeout(startRefresh, t);\n' + \
+      '       })();\n' + \
+      '     }\n' + \
+      '     window.onload = function() {\n' + \
+      '       var live = document.getElementById("live");\n' + \
+      '       var source = document.getElementById("source");\n' + \
+      '       var detect = document.getElementById("detect");\n' + \
+      '       refresh(live);\n' + \
+      '       refresh(source);\n' + \
+      '       refresh(detect);\n' + \
+      '     }\n' + \
+      '   </script>\n' + \
+      ' </body>\n' + \
+      '</html>\n'
+    return (OUT)
 
   # Prevent caching everywhere
   @webapp.after_request

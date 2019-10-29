@@ -40,7 +40,7 @@ clean:
 #    5. Terminate the subscriber with Ctrl-C, then: `make test-end`
 test-broker:
 	@docker network create mqtt-net 2>/dev/null || :
-	docker rm -f test-broker
+	-docker rm -f test-broker 2>/dev/null || :
 	docker run --rm -d -p 127.0.0.1:1883:1883 --name test-broker --network mqtt-net --network-alias mqtt $(DOCKER_IMAGE_BASE)_$(ARCH):$(SERVICE_VERSION)
 test-sub:
 	mosquitto_sub -h 127.0.0.1 -p 1883 -t /foo

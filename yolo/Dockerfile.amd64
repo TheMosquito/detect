@@ -27,6 +27,7 @@ RUN apt-get update && apt-get install -q -y --no-install-recommends \
 # Copy compiled darknet
 COPY --from=darknet /darknet /darknet
 
+COPY watchdog.sh /
 COPY yolo.sh /
 WORKDIR /
 CMD [ "/yolo.sh" ]

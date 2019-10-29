@@ -29,6 +29,10 @@ clean:
 
 # ----------------------------------------------------------------------------
 
+dev-yolo:
+	-docker rm -f test-yolo 2>/dev/null || :
+	docker run -it --name test-yolo --network mqtt-net --network-alias yolo -v `pwd`:/outside $(DOCKER_IMAGE_BASE)_$(ARCH):$(SERVICE_VERSION) /bin/bash
+
 test-yolo:
 	-docker rm -f test-yolo 2>/dev/null || :
 	docker run --rm -d --name test-yolo --network mqtt-net --network-alias yolo -v `pwd`:/outside $(DOCKER_IMAGE_BASE)_$(ARCH):$(SERVICE_VERSION)

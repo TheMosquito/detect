@@ -19,38 +19,44 @@ cd /darknet
 while true; do
 
   # Start fresh (remove any existing artifacts)
-  rm -f "${IN_JPG}" "${OUT_JPG}" "${OUT_DATA}"
+  rm -f "${IN_JPG}" "${OUT_JPG}" "${OUT_DATA}" "${RTN_JPG}" "${RTN_JSON}" 
 
-  # Pull image from mqtt (-C 1 means pull only one message)
-  JSON=$(${MQTT_SUB_COMMAND} -C 1 -t ${YOLO_IN_TOPIC})
-  SETTINGS=$(echo "${JSON}" | jq ".cam.settings")
-  WIDTH=$(echo "${SETTINGS}" | jq ".width")
-  HEIGHT=$(echo "${SETTINGS}" | jq ".height")
-  IN_IMAGE_B64=$(echo "${JSON}" | jq --raw-output --join-output ".cam.image")
-  $(echo -n "${IN_IMAGE_B64}" | base64 -d > "${IN_JPG}")
+  # Using the watchdog, pull image from mqtt (-C 1 means pull only one message)
+  JSON=$(/watchdog.sh ${MQTT_SUB_COMMAND} -C 1 -t ${YOLO_IN_TOPIC})
+  if [ "" != "${JSON}" ]; then
+    SETTINGS=$(echo "${JSON}" | jq ".cam.settings")
+    WIDTH=$(echo "${SETTINGS}" | jq ".width")
+    HEIGHT=$(echo "${SETTINGS}" | jq ".height")
+    IN_IMAGE_B64=$(echo "${JSON}" | jq --raw-output --join-output ".cam.image")
+    $(echo -n "${IN_IMAGE_B64}" | base64 -d > "${IN_JPG}")
 
-  # Identify from tiny set
-  /darknet/darknet detector test cfg/voc.data cfg/yolov2-tiny-voc.cfg yolov2-tiny-voc.weights "${IN_JPG}" > "${OUT_DATA}" 2>/dev/null
+    # Identify from tiny set
+    /darknet/darknet detector test cfg/voc.data cfg/yolov2-tiny-voc.cfg yolov2-tiny-voc.weights "${IN_JPG}" > "${OUT_DATA}" 2>/dev/null
 
-  # Retain the annotated image
-  cp "${OUT_JPG}" "${RTN_JPG}"
+    # Retain the annotated image
+    cp "${OUT_JPG}" "${RTN_JPG}"
 
-  # Extract processing time in seconds
-  TIME=$(cat "${OUT_DATA}" | egrep "Predicted" | sed 's/.*Predicted in \([^ ]*\).*/\1/')
-  # failure is zero
-  if [ -z "${TIME}" ]; then
-    TIME=0;
-    echo "Detection failed."
-  fi
+    # Extract processing time in seconds
+    TIME=$(cat "${OUT_DATA}" | egrep "Predicted" | sed 's/.*Predicted in \([^ ]*\).*/\1/')
+    # Zero indicates failure
+    if [ -z "${TIME}" ]; then
+      TIME=0;
+      echo "Detection failed."
+    fi
 
-  # Count specified entity
-  COUNT=$(egrep '^'"${YOLO_ENTITY}" "${OUT_DATA}" | wc -l)
+    # Count specified entity
+    COUNT=$(egrep '^'"${YOLO_ENTITY}" "${OUT_DATA}" | wc -l)
 
-  # Base64-encode the annotated image
-  OUT_IMAGE_B64=$(base64 -w 0 -i "${OUT_JPG}")
+    # Base64-encode the annotated image
+    OUT_IMAGE_B64=$(base64 -w 0 -i "${OUT_JPG}")
 
-  # Publish the encoded images to the MQTT broker (qos=0, fire and forget)
-  ${MQTT_PUB_COMMAND} --qos 0 -t ${YOLO_OUT_TOPIC} -m "{ \"detect\": { \"tool\":\"yolo\", \"date\":\"$(date +%s)\", \"time\":\"${TIME}\", \"entity\":\"${YOLO_ENTITY}\", \"count\":${COUNT}, \"source\":\"${IN_IMAGE_B64}\", \"image\":\"${OUT_IMAGE_B64}\" } }"
+    # Publish the encoded images to the MQTT broker (qos=0, fire and forget)
+    echo "{ \"detect\": { \"tool\":\"yolo\", \"date\":\"$(date +%s)\", \"time\":\"${TIME}\", \"entity\":\"${YOLO_ENTITY}\", \"count\":${COUNT}, " > "${RTN_JSON}"
+    echo "\"source\":\"${IN_IMAGE_B64}\", " >> "${RTN_JSON}"
+    echo "\"image\":\"${OUT_IMAGE_B64}\" } }" >> "${RTN_JSON}"
+    ${MQTT_PUB_COMMAND} --qos 0 -t ${YOLO_OUT_TOPIC} -f "${RTN_JSON}"
+
+ fi
 
  # Pause for some number of seconds before going again
   sleep "${YOLO_PERIOD}"

@@ -5,6 +5,9 @@ RUN apk --no-cache --update add mosquitto-clients
 # Install flask (for the REST API server)
 RUN pip install Flask
 
+# Copy the dummy images
+COPY *.jpg /
+
 # Copy over the source
 COPY watcher.py /
 WORKDIR /

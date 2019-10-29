@@ -17,6 +17,11 @@ test-all:
 	make -C mqtt2kafka
 	make -C mqtt2kafka test-kafka
 
+clean-docker-all:
+	-docker rm -f `docker ps -aq` 2>/dev/null || :
+	-docker rmi -f `docker images -aq` 2>/dev/null || :
+	-docker network rm mqtt-net 2>/dev/null || :
+
 publish-all:
 	make -C mqtt
 	make -C mqtt push
