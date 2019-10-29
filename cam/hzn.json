@@ -2,6 +2,6 @@
     "MetadataVars": {
         "DOCKER_IMAGE_BASE": "ibmosquito/cam",
         "SERVICE_NAME": "cam",
-        "SERVICE_VERSION": "1.0.1"
+        "SERVICE_VERSION": "1.0.2"
     }
 }

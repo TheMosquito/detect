@@ -4,6 +4,7 @@ RUN apt-get update && apt-get install -q -y --no-install-recommends \
   mosquitto-clients \
   fswebcam
 
+COPY watchdog.sh /
 COPY mock.jpg /
 COPY cam.sh /
 WORKDIR /

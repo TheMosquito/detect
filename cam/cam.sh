@@ -14,6 +14,7 @@ echo "${SETTINGS}"
 
 MOCK="/mock.jpg"
 JPG="/tmp/cam.jpg"
+RTN_JSON="/tmp/rtn.json"
 SCALE="${CAM_OUT_WIDTH}x${CAM_OUT_HEIGHT}"
 
 # Loop forever...
@@ -36,9 +37,9 @@ while true; do
   # BASE64 encode the image (live or mock.jpg)
   IMAGE=$(base64 -w 0 -i "${JPG}")
 
-  # Publish the encoded image to the MQTT broker (qos=0, fire and forget)
-  # echo "mosquitto_pub -h mqtt -p 1883 -t ${CAM_TOPIC} --qos 0 -m \"{\"cam\":{ \"live\":${LIVE}, \"settings\":${SETTINGS}, \"image\":\"${IMAGE}\" } }\""
-  mosquitto_pub -h mqtt -p 1883 -t ${CAM_TOPIC} --qos 0 -m "{\"cam\":{ \"live\":${LIVE}, \"settings\":${SETTINGS}, \"image\":\"${IMAGE}\" } }"
+  # Use watchdog to publish encoded image to MQTT (qos=0, fire and forget)
+  echo "{\"cam\":{ \"live\":${LIVE}, \"settings\":${SETTINGS}, \"image\":\"${IMAGE}\" } }" > "${RTN_JSON}"
+  /watchdog.sh mosquitto_pub -h mqtt -p 1883 -t ${CAM_TOPIC} --qos 0 -f "${RTN_JSON}"
 
   # Pause for some number of seconds before going again
   sleep ${CAM_PAUSE_SEC}

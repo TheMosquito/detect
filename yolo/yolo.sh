@@ -51,8 +51,8 @@ while true; do
     OUT_IMAGE_B64=$(base64 -w 0 -i "${OUT_JPG}")
 
     # Publish the encoded images to the MQTT broker (qos=0, fire and forget)
-    echo "{ \"detect\": { \"tool\":\"yolo\", \"date\":\"$(date +%s)\", \"time\":\"${TIME}\", \"entity\":\"${YOLO_ENTITY}\", \"count\":${COUNT}, " > "${RTN_JSON}"
-    echo "\"source\":\"${IN_IMAGE_B64}\", " >> "${RTN_JSON}"
+    echo -n "{ \"detect\": { \"tool\":\"yolo\", \"date\":\"$(date +%s)\", \"time\":\"${TIME}\", \"entity\":\"${YOLO_ENTITY}\", \"count\":${COUNT}, " > "${RTN_JSON}"
+    echo -n "\"source\":\"${IN_IMAGE_B64}\", " >> "${RTN_JSON}"
     echo "\"image\":\"${OUT_IMAGE_B64}\" } }" >> "${RTN_JSON}"
     ${MQTT_PUB_COMMAND} --qos 0 -t ${YOLO_OUT_TOPIC} -f "${RTN_JSON}"
 
