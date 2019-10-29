@@ -38,5 +38,4 @@ publish-all:
 	make -C mqtt2kafka
 	make -C mqtt2kafka push
 	make -C mqtt2kafka publish-service
-	make publish-pattern
 
