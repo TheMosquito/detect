@@ -1,0 +1,23 @@
+{
+  "services": [
+    {
+      "org": "$HZN_ORG_ID",
+      "url": "mqtt2kafka",
+      "versionRange": "[0.0.0,INFINITY)",
+      "variables": {
+        "EVTSTREAMS_BROKER_URL": "$EVTSTREAMS_BROKER_URL",
+        "EVTSTREAMS_API_KEY": "$EVTSTREAMS_API_KEY",
+        "EVTSTREAMS_TOPIC": "$EVTSTREAMS_TOPIC",
+        "MQTT_TOPIC": "/detect"
+      }
+    },
+    {
+      "org": "$HZN_ORG_ID",
+      "url": "yolo",
+      "versionRange": "[0.0.0,INFINITY)",
+      "variables": {
+        "YOLO_DEVICENAME": "$DEVICENAME"
+      }
+    }
+  ]
+}
