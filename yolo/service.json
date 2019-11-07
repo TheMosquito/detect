@@ -11,6 +11,12 @@
   ],
   "userInput": [
     {
+      "name": "YOLO_DEVICENAME",
+      "label": "Edge Device Name",
+      "type": "string",
+      "defaultValue": ""
+    },
+    {
       "name": "YOLO_ENTITY",
       "label": "entity to detect",
       "type": "string",
