@@ -35,6 +35,9 @@ publish-all:
 	make -C yolo
 	make -C yolo push
 	make -C yolo publish-service
+	make -C yologpu
+	make -C yologpu push
+	make -C yologpu publish-service
 	make -C mqtt2kafka
 	make -C mqtt2kafka push
 	make -C mqtt2kafka publish-service
