@@ -39,7 +39,7 @@ while true; do
 
   # Use watchdog to publish encoded image to MQTT (qos=0, fire and forget)
   echo "{\"cam\":{ \"live\":${LIVE}, \"settings\":${SETTINGS}, \"image\":\"${IMAGE}\" } }" > "${RTN_JSON}"
-  /watchdog.sh mosquitto_pub -h mqtt -p 1883 -t ${CAM_TOPIC} --qos 0 -f "${RTN_JSON}"
+  /watchdog.sh mosquitto_pub -h sg.mqtt -p 1883 -t ${CAM_TOPIC} --qos 0 -f "${RTN_JSON}"
 
   # Pause for some number of seconds before going again
   sleep ${CAM_PAUSE_SEC}

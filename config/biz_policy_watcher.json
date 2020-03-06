@@ -1,0 +1,22 @@
+{
+    "label": "biz-policy-watcher-arm",
+    "description": "A business policy for watcher on arm",
+    "service": {
+	"name": "$OWNER_GROUP.watcher",
+	"org": "$HZN_ORG_ID",
+	"arch": "$ARCH",
+	"serviceVersions": [
+	    {
+		"version": "1.0.3",
+		"priority":{}
+	    }
+	]
+    },
+    "properties": [
+    ],
+    "constraints": [
+	"watcher == yes"
+    ],
+    "userInput": [
+    ]
+}

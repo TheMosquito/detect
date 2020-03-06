@@ -23,22 +23,22 @@ clean-docker-all:
 	-docker network rm mqtt-net 2>/dev/null || :
 
 publish-all:
-	make -C mqtt
-	make -C mqtt push
-	make -C mqtt publish-service
-	make -C cam
-	make -C cam push
-	make -C cam publish-service
-	make -C watcher
-	make -C watcher push
-	make -C watcher publish-service
-	make -C yolo
-	make -C yolo push
-	make -C yolo publish-service
-	make -C yologpu
-	make -C yologpu push
-	make -C yologpu publish-service
-	make -C mqtt2kafka
-	make -C mqtt2kafka push
-	make -C mqtt2kafka publish-service
+	make -C src/mqtt
+	make -C src/mqtt push
+	make -C src/mqtt publish-service
+	make -C src/cam
+	make -C src/cam push
+	make -C src/cam publish-service
+	make -C src/mqtt2kafka
+	make -C src/mqtt2kafka push
+	make -C src/mqtt2kafka publish-service
+	make -C src/watcher
+	make -C src/watcher push
+	make -C src/watcher publish-service
+	make -C src/yolo
+	make -C src/yolo push
+	make -C src/yolo publish-service
+#	make -C src/yologpu
+#	make -C src/yologpu push
+#	make -C src/yologpu publish-service
 

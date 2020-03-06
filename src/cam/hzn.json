@@ -1,0 +1,7 @@
+{
+    "MetadataVars": {
+        "DOCKER_IMAGE_BASE": "$(DOCKER_BASE)/$(OWNER_GROUP).cam",
+        "SERVICE_NAME": "$(OWNER_GROUP).cam",
+        "SERVICE_VERSION": "1.0.2"
+    }
+}

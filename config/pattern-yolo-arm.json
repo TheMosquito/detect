@@ -1,26 +1,26 @@
 {
-  "name": "pattern-yolo-arm",
+  "name": "pattern-$OWNER_GROUP.yolo-arm",
   "services": [
     {
-      "serviceUrl": "mqtt2kafka",
+      "serviceUrl": "$OWNER_GROUP.mqtt2kafka",
       "serviceOrgid": "$HZN_ORG_ID",
       "serviceArch": "arm",
       "serviceVersions": [ { "version": "1.0.2" } ]
     },
     {
-      "serviceUrl": "watcher",
+      "serviceUrl": "$OWNER_GROUP.watcher",
       "serviceOrgid": "$HZN_ORG_ID",
       "serviceArch": "arm",
       "serviceVersions": [ { "version": "1.0.3" } ]
     },
     {
-      "serviceUrl": "yolo",
+      "serviceUrl": "$OWNER_GROUP.yolo",
       "serviceOrgid": "$HZN_ORG_ID",
       "serviceArch": "arm",
       "serviceVersions": [ { "version": "1.0.4" } ]
     },
     {
-      "serviceUrl": "cam",
+      "serviceUrl": "$OWNER_GROUP.cam",
       "serviceOrgid": "$HZN_ORG_ID",
       "serviceArch": "arm",
       "serviceVersions": [ { "version": "1.0.2" } ]

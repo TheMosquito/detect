@@ -4,7 +4,7 @@
 if [ -z "${HZN_DEVICE_ID:-}" ]; then HZN_DEVICE_ID="unnamed"; fi
 
 # The command to subscribe and get one message from the local MQTT broker
-MQTT_COMMAND='mosquitto_sub -h mqtt -p 1883 -C 1 '
+MQTT_COMMAND='mosquitto_sub -h sg.mqtt -p 1883 -C 1 '
 
 # Verify required environment variables are set
 checkRequiredEnvVar() {

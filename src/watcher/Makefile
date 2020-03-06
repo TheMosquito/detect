@@ -1,6 +1,22 @@
-# An example of yolo an a Horizon service
+# A simple monitor program for the cam and yolo services
 
 # ----------------------------------------------------------------------------
+
+ifndef DOCKER_BASE
+$(error DOCKER_BASE is not set. export DOCKER_BASE=<your-docker-account-base>)
+endif
+
+ifndef OWNER_GROUP
+$(error OWNER_GROUP is not set. Set to your common or your initials. export OWNER_GROUP=sg))
+endif
+
+ifndef HZN_ORG_ID
+$(error HZN_ORG_ID is not set. export HZN_ORG_ID=mycluster))
+endif
+
+ifndef HZN_EXCHANGE_USER_AUTH
+$(error HZN_EXCHANGE_USER_AUTH is not set. export HZN_EXCHANGE_USER_AUTH=iamapikey:<your-iamapikey>))
+endif
 
 # You must always use the Horizon name for architecture (`hzn architecture`)
 export ARCH ?= $(shell hzn architecture)
@@ -24,14 +40,19 @@ publish-service:
 
 # Remove the local container image
 clean:
-	-docker rmi $(DOCKER_IMAGE_BASE)_$(ARCH):$(SERVICE_VERSION) 2> /dev/null || :
-	rm -f .hzn.json.tmp.mk
+	@docker rmi $(DOCKER_IMAGE_BASE)_$(ARCH):$(SERVICE_VERSION) 2>/dev/null || :
+	@rm -f .hzn.json.tmp.mk
 
 # ----------------------------------------------------------------------------
 
-test-kafka:
-	-docker rm -f test-kafka 2>/dev/null || :
-	docker run --rm -d -e HZN_DEVICE_ID="${HZN_DEVICE_ID}" -e MQTT_TOPIC="${MQTT_TOPIC}" -e EVTSTREAMS_TOPIC="${EVTSTREAMS_TOPIC}" -e EVTSTREAMS_API_KEY="${EVTSTREAMS_API_KEY}" -e EVTSTREAMS_BROKER_URL="${EVTSTREAMS_BROKER_URL}" --name test-kafka --network mqtt-net --network-alias kafka -v `pwd`:/outside $(DOCKER_IMAGE_BASE)_$(ARCH):$(SERVICE_VERSION)
+dev-watcher:
+	-docker rm -f watcher 2>/dev/null || :
+	docker run -it -p 0.0.0.0:5200:5200 --name watcher --network mqtt-net --network-alias watcher $(DOCKER_IMAGE_BASE)_$(ARCH):$(SERVICE_VERSION) /bin/sh
+
+test-watcher:
+	-docker rm -f watcher 2>/dev/null || :
+	docker run --rm -d -p 0.0.0.0:5200:5200 --name watcher --network mqtt-net --network-alias watcher $(DOCKER_IMAGE_BASE)_$(ARCH):$(SERVICE_VERSION)
+test-end:
 
 # ----------------------------------------------------------------------------
 

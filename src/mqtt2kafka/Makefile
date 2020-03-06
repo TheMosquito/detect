@@ -1,6 +1,22 @@
-# A simple local MQTT broker for Horizon servcies to use
+# An example of yolo an a Horizon service
 
 # ----------------------------------------------------------------------------
+
+ifndef DOCKER_BASE
+$(error DOCKER_BASE is not set. export DOCKER_BASE=<your-docker-account-base>)
+endif
+
+ifndef OWNER_GROUP
+$(error OWNER_GROUP is not set. Set to your common or your initials. export OWNER_GROUP=sg))
+endif
+
+ifndef HZN_ORG_ID
+$(error HZN_ORG_ID is not set. export HZN_ORG_ID=mycluster))
+endif
+
+ifndef HZN_EXCHANGE_USER_AUTH
+$(error HZN_EXCHANGE_USER_AUTH is not set. export HZN_EXCHANGE_USER_AUTH=iamapikey:<your-iamapikey>))
+endif
 
 # You must always use the Horizon name for architecture (`hzn architecture`)
 export ARCH ?= $(shell hzn architecture)
@@ -24,19 +40,14 @@ publish-service:
 
 # Remove the local container image
 clean:
-	-docker rmi $(DOCKER_IMAGE_BASE)_$(ARCH):$(SERVICE_VERSION) 2>/dev/null || :
+	-docker rmi $(DOCKER_IMAGE_BASE)_$(ARCH):$(SERVICE_VERSION) 2> /dev/null || :
 	rm -f .hzn.json.tmp.mk
 
 # ----------------------------------------------------------------------------
 
-test-cam:
-	-docker rm -f cam 2>/dev/null || :
-	docker run --rm -d -e CAM_DEVICE="V4L2:/dev/video0" --privileged --name cam --network mqtt-net --network-alias cam $(DOCKER_IMAGE_BASE)_$(ARCH):$(SERVICE_VERSION)
-	docker exec -it cam sh -c 'apt install -y jq'
-test-get:
-	docker exec -it cam sh -c 'mosquitto_sub -h mqtt -p 1883 -t /cam -C 1 | jq --raw-output --join-output ".cam.image"' | base64 -d > foo.jpg
-test-end:
-	docker rm -f cam
+test-kafka:
+	-docker rm -f test-kafka 2>/dev/null || :
+	docker run --rm -d -e HZN_DEVICE_ID="${HZN_DEVICE_ID}" -e MQTT_TOPIC="${MQTT_TOPIC}" -e EVTSTREAMS_TOPIC="${EVTSTREAMS_TOPIC}" -e EVTSTREAMS_API_KEY="${EVTSTREAMS_API_KEY}" -e EVTSTREAMS_BROKER_URL="${EVTSTREAMS_BROKER_URL}" --name test-kafka --network mqtt-net --network-alias kafka -v `pwd`:/outside $(DOCKER_IMAGE_BASE)_$(ARCH):$(SERVICE_VERSION)
 
 # ----------------------------------------------------------------------------
 

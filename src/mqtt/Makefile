@@ -2,6 +2,22 @@
 
 # ----------------------------------------------------------------------------
 
+ifndef DOCKER_BASE
+$(error DOCKER_BASE is not set. export DOCKER_BASE=<your-docker-account-base>)
+endif
+
+ifndef OWNER_GROUP
+$(error OWNER_GROUP is not set. Set to your common or your initials. export OWNER_GROUP=sg))
+endif
+
+ifndef HZN_ORG_ID
+$(error HZN_ORG_ID is not set. export HZN_ORG_ID=mycluster))
+endif
+
+ifndef HZN_EXCHANGE_USER_AUTH
+$(error HZN_EXCHANGE_USER_AUTH is not set. export HZN_EXCHANGE_USER_AUTH=iamapikey:<your-iamapikey>))
+endif
+
 # You must always use the Horizon name for architecture (`hzn architecture`)
 export ARCH ?= $(shell hzn architecture)
 

@@ -1,0 +1,33 @@
+{
+    "label": "biz-policy-mqtt2kafka-$ARCH",
+    "description": "A mqtt2kafka Business Policy",
+    "service": {
+	"name": "$OWNER_GROUP.mqtt2kafka",
+	"org": "$HZN_ORG_ID",
+	"arch": "$ARCH",
+	"serviceVersions": [
+	    {
+		"version": "1.0.2",
+		"priority":{}
+	    }
+	]
+    },
+    "properties": [
+    ],
+    "constraints": [
+	"kafka == yes"
+    ],
+    "userInput": [
+	{
+	    "serviceOrgid": "$HZN_ORG_ID",
+	    "serviceUrl": "$OWNER_GROUP.mqtt2kafka",
+	    "serviceVersionRange": "[0.0.0,INFINITY)",
+	    "inputs": [
+		{ "name" : "EVTSTREAMS_BROKER_URL", "value" : "$EVTSTREAMS_BROKER_URL" },
+		{ "name" : "EVTSTREAMS_API_KEY",    "value" : "$EVTSTREAMS_API_KEY" },
+		{ "name" : "EVTSTREAMS_TOPIC",      "value" : "$EVTSTREAMS_TOPIC" },
+		{ "name" : "MQTT_TOPIC",            "value" : "/detect" }
+	    ]
+	}
+    ]
+}

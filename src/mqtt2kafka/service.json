@@ -7,7 +7,7 @@
   "arch": "$ARCH",
   "sharable": "exclusive",
   "requiredServices": [
-    { "org": "$HZN_ORG_ID", "url": "mqtt", "version": "1.0.1", "arch": "$ARCH" }
+    { "org": "$HZN_ORG_ID", "url": "$OWNER_GROUP.mqtt", "version": "1.0.1", "arch": "$ARCH" }
   ],
   "userInput": [
     {

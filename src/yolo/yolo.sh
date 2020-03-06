@@ -8,8 +8,8 @@ if [ -z "${YOLO_IN_TOPIC:-}" ]; then YOLO_IN_TOPIC="/cam"; fi
 if [ -z "${YOLO_OUT_TOPIC:-}" ]; then YOLO_OUT_TOPIC="/detect"; fi
 
 # Consts
-MQTT_SUB_COMMAND='mosquitto_sub -h mqtt -p 1883 '
-MQTT_PUB_COMMAND='mosquitto_pub -h mqtt -p 1883 '
+MQTT_SUB_COMMAND='mosquitto_sub -h sg.mqtt -p 1883 '
+MQTT_PUB_COMMAND='mosquitto_pub -h sg.mqtt -p 1883 '
 IN_JPG="/tmp/in.jpg"
 OUT_JPG="/darknet/predictions.jpg"
 OUT_DATA="/tmp/out.txt"

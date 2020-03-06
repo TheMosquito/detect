@@ -1,0 +1,22 @@
+{
+    "label": "biz-policy-cam-$ARCH",
+    "description": "A business policy for cam on $ARCH",
+    "service": {
+	"name": "$OWNER_GROUP.cam",
+	"org": "$HZN_ORG_ID",
+	"arch": "$ARCH",
+	"serviceVersions": [
+	    {
+		"version": "1.0.2",
+		"priority":{}
+	    }
+	]
+    },
+    "properties": [
+    ],
+    "constraints": [
+	"camera == yes"
+    ],
+    "userInput": [
+    ]
+}

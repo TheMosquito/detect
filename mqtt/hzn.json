@@ -1,7 +1,0 @@
-{
-    "MetadataVars": {
-        "DOCKER_IMAGE_BASE": "edgedock/mqtt",
-        "SERVICE_NAME": "mqtt",
-        "SERVICE_VERSION": "1.0.1"
-    }
-}
