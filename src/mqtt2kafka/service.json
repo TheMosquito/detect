@@ -10,30 +10,11 @@
     { "org": "$HZN_ORG_ID", "url": "$OWNER_GROUP.mqtt", "version": "1.0.1", "arch": "$ARCH" }
   ],
   "userInput": [
-    {
-      "name": "MQTT_TOPIC",
-      "label": "MQTT topic to read from (and send to kafka)",
-      "type": "string",
-      "defaultValue": ""
-    },
-    {
-      "name": "EVTSTREAMS_TOPIC",
-      "label": "The kafka topic to send to",
-      "type": "string",
-      "defaultValue": ""
-    },
-    {
-      "name": "EVTSTREAMS_API_KEY",
-      "label": "API key for this kafka instance in IBM EventStreams",
-      "type": "string",
-      "defaultValue": ""
-    },
-    {
-      "name": "EVTSTREAMS_BROKER_URL",
-      "label": "Broker URLs for this kafka instance in IBM EventStreams",
-      "type": "string",
-      "defaultValue": ""
-    }
+    { "name": "MQTT_HOST", "label": "internal mqtt host", "type": "string", "defaultValue": "$OWNER_GROUP.mqtt" },
+    { "name": "MQTT_TOPIC", "label": "MQTT topic to read from (and send to kafka)", "type": "string", "defaultValue": "" },
+    { "name": "EVTSTREAMS_TOPIC", "label": "The kafka topic to send to", "type": "string", "defaultValue": "" },
+    { "name": "EVTSTREAMS_API_KEY", "label": "API key for this kafka instance in IBM EventStreams", "type": "string", "defaultValue": "" },
+    { "name": "EVTSTREAMS_BROKER_URL", "label": "Broker URLs for this kafka instance in IBM EventStreams", "type": "string", "defaultValue": "" }
   ],
   "deployment": {
     "services": {

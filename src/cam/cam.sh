@@ -7,6 +7,7 @@ if [ -z "${CAM_OUT_WIDTH:-}" ]; then CAM_OUT_WIDTH=320; fi
 if [ -z "${CAM_OUT_HEIGHT:-}" ]; then CAM_OUT_HEIGHT=240; fi
 if [ -z "${CAM_PAUSE_SEC:-}" ]; then CAM_PAUSE_SEC=5; fi
 if [ -z "${CAM_TOPIC:-}" ]; then CAM_TOPIC="/cam"; fi
+if [ -z "${MQTT_HOST:-}" ]; then MQTT_HOST=""; fi
 
 # Log the settings
 SETTINGS="{ \"device\":\"${CAM_DEVICE}\", \"delay\":\"${CAM_DELAY_SEC}\", \"pause\":\"${CAM_PAUSE_SEC}\", \"width\":${CAM_OUT_WIDTH}, \"height\":${CAM_OUT_HEIGHT}, \"topic\":\"${CAM_TOPIC}\", \"type\":\"jpg\", \"encoding\":\"base64\" }"
@@ -39,7 +40,7 @@ while true; do
 
   # Use watchdog to publish encoded image to MQTT (qos=0, fire and forget)
   echo "{\"cam\":{ \"live\":${LIVE}, \"settings\":${SETTINGS}, \"image\":\"${IMAGE}\" } }" > "${RTN_JSON}"
-  /watchdog.sh mosquitto_pub -h sg.mqtt -p 1883 -t ${CAM_TOPIC} --qos 0 -f "${RTN_JSON}"
+  /watchdog.sh mosquitto_pub -h ${MQTT_HOST} -p 1883 -t ${CAM_TOPIC} --qos 0 -f "${RTN_JSON}"
 
   # Pause for some number of seconds before going again
   sleep ${CAM_PAUSE_SEC}

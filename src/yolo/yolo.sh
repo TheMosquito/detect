@@ -6,10 +6,12 @@ if [ -z "${YOLO_ENTITY:-}" ]; then YOLO_ENTITY="person"; fi
 if [ -z "${YOLO_PERIOD:-}" ]; then YOLO_PERIOD=5; fi
 if [ -z "${YOLO_IN_TOPIC:-}" ]; then YOLO_IN_TOPIC="/cam"; fi
 if [ -z "${YOLO_OUT_TOPIC:-}" ]; then YOLO_OUT_TOPIC="/detect"; fi
+if [ -z "${MQTT_HOST:-}" ]; then MQTT_HOST=""; fi
 
 # Consts
-MQTT_SUB_COMMAND='mosquitto_sub -h sg.mqtt -p 1883 '
-MQTT_PUB_COMMAND='mosquitto_pub -h sg.mqtt -p 1883 '
+MQTT_SUB_COMMAND="mosquitto_sub -h ${MQTT_HOST} -p 1883 "
+MQTT_PUB_COMMAND="mosquitto_pub -h ${MQTT_HOST} -p 1883 "
+
 IN_JPG="/tmp/in.jpg"
 OUT_JPG="/darknet/predictions.jpg"
 OUT_DATA="/tmp/out.txt"

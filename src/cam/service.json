@@ -15,7 +15,8 @@
     { "name": "CAM_PAUSE_SEC", "label": "sec between photos", "type": "int", "defaultValue": "1" },
     { "name": "CAM_OUT_WIDTH", "label": "output image width", "type": "int", "defaultValue": "320" },
     { "name": "CAM_OUT_HEIGHT", "label": "output image height", "type": "int", "defaultValue": "240" },
-    { "name": "CAM_TOPIC", "label": "mqtt topic path to publish images", "type": "string", "defaultValue": "/cam" }
+    { "name": "CAM_TOPIC", "label": "mqtt topic path to publish images", "type": "string", "defaultValue": "/cam" },
+    { "name": "MQTT_HOST", "label": "mqtt host", "type": "string", "defaultValue": "$OWNER_GROUP.mqtt" }
   ],
   "deployment": {
     "services": {

@@ -2,9 +2,10 @@
 
 # For development
 if [ -z "${HZN_DEVICE_ID:-}" ]; then HZN_DEVICE_ID="unnamed"; fi
+if [ -z "${MQTT_HOST:-}" ]; then MQTT_HOST=""; fi
 
 # The command to subscribe and get one message from the local MQTT broker
-MQTT_COMMAND='mosquitto_sub -h sg.mqtt -p 1883 -C 1 '
+MQTT_COMMAND="mosquitto_sub -h ${MQTT_HOST} -p 1883 -C 1 "
 
 # Verify required environment variables are set
 checkRequiredEnvVar() {
