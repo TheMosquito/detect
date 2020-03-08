@@ -1,0 +1,84 @@
+{
+  "name": "pattern-yolo",
+  "services": [
+
+
+    {
+      "serviceUrl": "mqtt2kafka",
+      "serviceOrgid": "$HZN_ORG_ID",
+      "serviceArch": "arm",
+      "serviceVersions": [ { "version": "1.0.1" } ]
+    },
+    {
+      "serviceUrl": "watcher",
+      "serviceOrgid": "$HZN_ORG_ID",
+      "serviceArch": "arm",
+      "serviceVersions": [ { "version": "1.0.3" } ]
+    },
+    {
+      "serviceUrl": "yolo",
+      "serviceOrgid": "$HZN_ORG_ID",
+      "serviceArch": "arm",
+      "serviceVersions": [ { "version": "1.0.3" } ]
+    },
+    {
+      "serviceUrl": "cam",
+      "serviceOrgid": "$HZN_ORG_ID",
+      "serviceArch": "arm",
+      "serviceVersions": [ { "version": "1.0.2" } ]
+    },
+
+
+    {
+      "serviceUrl": "mqtt2kafka",
+      "serviceOrgid": "$HZN_ORG_ID",
+      "serviceArch": "arm64",
+      "serviceVersions": [ { "version": "1.0.1" } ]
+    },
+    {
+      "serviceUrl": "watcher",
+      "serviceOrgid": "$HZN_ORG_ID",
+      "serviceArch": "arm64",
+      "serviceVersions": [ { "version": "1.0.3" } ]
+    },
+    {
+      "serviceUrl": "yolo",
+      "serviceOrgid": "$HZN_ORG_ID",
+      "serviceArch": "arm64",
+      "serviceVersions": [ { "version": "1.0.3" } ]
+    },
+    {
+      "serviceUrl": "cam",
+      "serviceOrgid": "$HZN_ORG_ID",
+      "serviceArch": "arm64",
+      "serviceVersions": [ { "version": "1.0.2" } ]
+    },
+
+
+    {
+      "serviceUrl": "mqtt2kafka",
+      "serviceOrgid": "$HZN_ORG_ID",
+      "serviceArch": "amd64",
+      "serviceVersions": [ { "version": "1.0.1" } ]
+    },
+    {
+      "serviceUrl": "watcher",
+      "serviceOrgid": "$HZN_ORG_ID",
+      "serviceArch": "amd64",
+      "serviceVersions": [ { "version": "1.0.3" } ]
+    },
+    {
+      "serviceUrl": "yolo",
+      "serviceOrgid": "$HZN_ORG_ID",
+      "serviceArch": "amd64",
+      "serviceVersions": [ { "version": "1.0.3" } ]
+    },
+    {
+      "serviceUrl": "cam",
+      "serviceOrgid": "$HZN_ORG_ID",
+      "serviceArch": "amd64",
+      "serviceVersions": [ { "version": "1.0.2" } ]
+    }
+  ]
+}
+

@@ -1,0 +1,11 @@
+{
+  "properties": [
+      { "name": "camera",  "value": "yes" },
+      { "name": "watcher", "value": "yes" },
+      { "name": "kafka",   "value": "yes" },
+      { "name": "yolo",   "value": "yes" },
+      { "name": "openhorizon.allowPrivileged", "value": true }
+  ],
+  "constraints": [
+  ]
+}
