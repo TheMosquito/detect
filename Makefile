@@ -1,9 +1,11 @@
 
+-include env.check.mk
+
 register-yolo:
 	hzn register --pattern "${HZN_ORG_ID}/pattern-yolo" --input-file ./input.json
 
 publish-pattern:
-	hzn exchange pattern publish -f pattern-yolo.json
+
 
 test-all:
 	make -C mqtt
@@ -21,6 +23,12 @@ clean-docker-all:
 	-docker rm -f `docker ps -aq` 2>/dev/null || :
 	-docker rmi -f `docker images -aq` 2>/dev/null || :
 	-docker network rm mqtt-net 2>/dev/null || :
+
+add-business-policy:
+	make -C src/cam add-business-policy
+	make -C src/mqtt2kafka add-business-policy
+	make -C src/watcher add-business-policy
+	make -C src/yolo add-business-policy
 
 publish-all:
 	make -C src/mqtt

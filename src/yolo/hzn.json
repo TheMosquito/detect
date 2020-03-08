@@ -1,7 +1,8 @@
 {
     "MetadataVars": {
-        "DOCKER_IMAGE_BASE": "$(DOCKER_BASE)/$(OWNER_GROUP).yolo",
-        "SERVICE_NAME": "$(OWNER_GROUP).yolo",
+        "IMAGE_NAME": "yolo",
+        "DOCKER_IMAGE_BASE": "$(DOCKER_BASE)/$(EDGE_OWNER).$(EDGE_DEPLOY).yolo",
+        "SERVICE_NAME": "$(EDGE_OWNER).$(EDGE_DEPLOY).yolo",
         "SERVICE_VERSION": "1.0.4"
     }
 }

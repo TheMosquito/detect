@@ -2,21 +2,7 @@
 
 # ----------------------------------------------------------------------------
 
-ifndef DOCKER_BASE
-$(error DOCKER_BASE is not set. export DOCKER_BASE=<your-docker-account-base>)
-endif
-
-ifndef OWNER_GROUP
-$(error OWNER_GROUP is not set. Set to your common or your initials.dev or .demo or .test export OWNER_GROUP=sg.dev))
-endif
-
-ifndef HZN_ORG_ID
-$(error HZN_ORG_ID is not set. export HZN_ORG_ID=mycluster))
-endif
-
-ifndef HZN_EXCHANGE_USER_AUTH
-$(error HZN_EXCHANGE_USER_AUTH is not set. export HZN_EXCHANGE_USER_AUTH=iamapikey:<your-iamapikey>))
-endif
+-include ../../env.check.mk
 
 # You must always use the Horizon name for architecture (`hzn architecture`)
 export ARCH ?= $(shell hzn architecture)
@@ -37,6 +23,9 @@ push:
 # Publish a Horizon service (per service.json) and pull image to get its sha256
 publish-service:
 	hzn exchange service publish -f service.json --pull-image
+
+add-business-policy:
+	hzn exchange business addpolicy -f biz_policy_$(IMAGE_NAME).json biz_policy_$(IMAGE_NAME)_$(ARCH)_$(EDGE_DEPLOY)
 
 # Remove the local container image
 clean:

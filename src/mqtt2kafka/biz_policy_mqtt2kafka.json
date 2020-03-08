@@ -2,7 +2,7 @@
     "label": "biz-policy-mqtt2kafka-$ARCH",
     "description": "A mqtt2kafka Business Policy",
     "service": {
-	"name": "$OWNER_GROUP.mqtt2kafka",
+	"name": "$EDGE_OWNER.$EDGE_DEPLOY.mqtt2kafka",
 	"org": "$HZN_ORG_ID",
 	"arch": "$ARCH",
 	"serviceVersions": [
@@ -15,12 +15,13 @@
     "properties": [
     ],
     "constraints": [
+	"deploy == $EDGE_DEPLOY",
 	"kafka == yes"
     ],
     "userInput": [
 	{
 	    "serviceOrgid": "$HZN_ORG_ID",
-	    "serviceUrl": "$OWNER_GROUP.mqtt2kafka",
+	    "serviceUrl": "$EDGE_OWNER.$EDGE_DEPLOY.mqtt2kafka",
 	    "serviceVersionRange": "[0.0.0,INFINITY)",
 	    "inputs": [
 		{ "name" : "EVTSTREAMS_BROKER_URL", "value" : "$EVTSTREAMS_BROKER_URL" },

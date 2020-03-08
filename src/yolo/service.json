@@ -7,7 +7,7 @@
   "arch": "$ARCH",
   "sharable": "singleton",
   "requiredServices": [ 
-    { "org": "$HZN_ORG_ID", "url": "$OWNER_GROUP.mqtt", "version": "1.0.1", "arch": "$ARCH" }
+    { "org": "$HZN_ORG_ID", "url": "$EDGE_OWNER.$EDGE_DEPLOY.mqtt", "version": "1.0.1", "arch": "$ARCH" }
   ],
   "userInput": [
     { "name": "YOLO_DEVICENAME", "label": "Edge Device Name", "type": "string", "defaultValue": "" },
@@ -15,7 +15,7 @@
     { "name": "YOLO_PERIOD", "label": "sec between updates", "type": "int", "defaultValue": "0" },
     { "name": "YOLO_IN_TOPIC", "label": "MQTT input topic", "type": "int", "defaultValue": "/cam" },
     { "name": "YOLO_OUT_TOPIC", "label": "MQTT output topic", "type": "int", "defaultValue": "/detect" },
-    { "name": "MQTT_HOST", "label": "MQTT host", "type": "string", "defaultValue": "$OWNER_GROUP.mqtt" }
+    { "name": "MQTT_HOST", "label": "MQTT host", "type": "string", "defaultValue": "$EDGE_OWNER.$EDGE_DEPLOY.mqtt" }
   ],
   "deployment": {
     "services": {

@@ -2,10 +2,12 @@
 
 Must define following ENVIRONMENT variables to build application, add policies and register edge node.
 
-Enviornment variable OWNER_GROUP provides flexiblity for different developers to use the same exchange without clobering over each other. You may also use this to organize your dev, test, demo code. e.g  sg.dev sg.demo sg.test etc
+Enviornment variables EDGE_OWNER, EDGE_DEPLOY provide flexiblity for different developers to use the same exchange without clobering over each other. You may also use this to organize your dev, test, demo code. e.g  sg.dev sg.demo sg.test etc
+
+    export EDGE_OWNER=<a-two-or-three-letter-distinctive-initial-of-your-name>  # sg gd 
+    export EDGE_DEPLOY=<deploy-target> # e.g: dev demo test prod
 
     export DOCKER_BASE=<docker-base> # e.g. edgedock
-    export OWNER_GROUP=<a-two-or-three-letter-distinctive-initial-of-your-name>  # sg.dev sg.demo sg.test
 
     export HZN_ORG_ID=mycluster
     export HZN_EXCHANGE_USER_AUTH=iamapikey:<iam-api-key>

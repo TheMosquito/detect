@@ -2,7 +2,7 @@
     "label": "biz-policy-yolo-arm",
     "description": "A yolo Business Policy",
     "service": {
-	"name": "$OWNER_GROUP.yolo",
+	"name": "$EDGE_OWNER.$EDGE_DEPLOY.yolo",
 	"org": "$HZN_ORG_ID",
 	"arch": "$ARCH",
 	"serviceVersions": [
@@ -15,12 +15,13 @@
     "properties": [
     ],
     "constraints": [
+	"deploy == $EDGE_DEPLOY",
 	"yolo == yes"
     ],
     "userInput": [
 	{
 	    "serviceOrgid": "$HZN_ORG_ID",
-	    "serviceUrl": "$OWNER_GROUP.yolo",
+	    "serviceUrl": "$EDGE_OWNER.$EDGE_DEPLOY.yolo",
 	    "serviceVersionRange": "[0.0.0,INFINITY)",
 	    "inputs": [
 		{ "name" : "YOLO_DEVICENAME", "value" : "RPI_TEST"  }

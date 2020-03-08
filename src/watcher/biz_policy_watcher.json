@@ -2,7 +2,7 @@
     "label": "biz-policy-watcher-arm",
     "description": "A business policy for watcher on arm",
     "service": {
-	"name": "$OWNER_GROUP.watcher",
+	"name": "$EDGE_OWNER.$EDGE_DEPLOY.watcher",
 	"org": "$HZN_ORG_ID",
 	"arch": "$ARCH",
 	"serviceVersions": [
@@ -15,6 +15,7 @@
     "properties": [
     ],
     "constraints": [
+	"deploy == $EDGE_DEPLOY",
 	"watcher == yes"
     ],
     "userInput": [

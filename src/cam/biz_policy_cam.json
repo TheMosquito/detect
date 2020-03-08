@@ -2,7 +2,7 @@
     "label": "biz-policy-cam-$ARCH",
     "description": "A business policy for cam on $ARCH",
     "service": {
-	"name": "$OWNER_GROUP.cam",
+	"name": "$EDGE_OWNER.$EDGE_DEPLOY.cam",
 	"org": "$HZN_ORG_ID",
 	"arch": "$ARCH",
 	"serviceVersions": [
@@ -15,6 +15,7 @@
     "properties": [
     ],
     "constraints": [
+	"deploy == $EDGE_DEPLOY",
 	"camera == yes"
     ],
     "userInput": [
