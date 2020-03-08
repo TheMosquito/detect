@@ -1,8 +1,8 @@
-## detect
+## README
 
 Must define following ENVIRONMENT variables to build application, add policies and register edge node.
 
-Enviornment variables EDGE_OWNER, EDGE_DEPLOY provide flexiblity for different developers to use the same exchange without clobering over each other. You may also use this to organize your dev, test, demo code. e.g  sg.dev sg.demo sg.test etc
+Enviornment variables EDGE_OWNER, EDGE_DEPLOY provide flexiblity for different developers to use the same exchange without clobering over each other.
 
     export EDGE_OWNER=<a-two-or-three-letter-distinctive-initial-of-your-name>  # sg gd 
     export EDGE_DEPLOY=<deploy-target> # e.g: dev demo test prod
@@ -27,13 +27,6 @@ Enviornment variables EDGE_OWNER, EDGE_DEPLOY provide flexiblity for different d
 ### Register node
 
     hzn register --policy=node_policy.json --input-file ./user-input-yolo.json
-
-### Add policy
-
-    hzn exchange business addpolicy -f biz_policy_cam.json biz_policy_cam
-    hzn exchange business addpolicy -f biz_policy_mqtt2kafka.json biz_policy_mqtt2kafka
-    hzn exchange business addpolicy -f biz_policy_yolo.json biz_policy_yolo
-    hzn exchange business addpolicy -f biz_policy_watcher.json  biz_policy_watcher
 
 ### Architecture
 A collection of Services to implement object detection for open-horizon
