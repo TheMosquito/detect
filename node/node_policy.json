@@ -1,10 +1,11 @@
 {
   "properties": [
+      { "name": "owner",   "value": "$EDGE_OWNER" },
       { "name": "deploy",  "value": "$EDGE_DEPLOY" },
-      { "name": "camera",  "value": "yes" },
-      { "name": "watcher", "value": "yes" },
-      { "name": "kafka",   "value": "yes" },
-      { "name": "yolo",   "value": "yes" },
+      { "name": "camera",  "value": "1.0.2" },
+      { "name": "watcher", "value": "1.0.3" },
+      { "name": "kafka",   "value": "1.0.2" },
+      { "name": "yolo",    "value": "1.0.4" },
       { "name": "openhorizon.allowPrivileged", "value": true }
   ],
   "constraints": [

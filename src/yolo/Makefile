@@ -25,7 +25,7 @@ publish-service:
 	hzn exchange service publish -f service.json --pull-image
 
 add-business-policy:
-	hzn exchange business addpolicy -f biz_policy_$(IMAGE_NAME).json biz_policy_$(IMAGE_NAME)_$(ARCH)_$(EDGE_DEPLOY)
+	hzn exchange business addpolicy -f biz_policy_$(IMAGE_NAME).json biz_$(IMAGE_NAME)_$(ARCH)_$(SERVICE_VERSION)_$(EDGE_DEPLOY)_$(EDGE_OWNER)
 
 # Remove the local container image
 clean:

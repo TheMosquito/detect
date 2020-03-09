@@ -15,8 +15,9 @@
     "properties": [
     ],
     "constraints": [
+	"owner == $EDGE_OWNER",
 	"deploy == $EDGE_DEPLOY",
-	"kafka == yes"
+	"kafka == 1.0.2"
     ],
     "userInput": [
 	{
