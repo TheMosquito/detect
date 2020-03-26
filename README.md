@@ -26,11 +26,11 @@ Enviornment variables EDGE_OWNER, EDGE_DEPLOY provide flexiblity for different d
 
 ### Register node
 
-    Using policy
+Using policy
 
     hzn register --policy=node_policy.json --input-file ./user-input-yolo.json
 
-    Using pattern
+Using pattern
 
     hzn register --pattern "${HZN_ORG_ID}/pattern-${EDGE_OWNER}.${EDGE_DEPLOY}.yolo-$ARCH" --input-file ./user-input-yolo.json --policy=node_policy_privileged.json
 
