@@ -2,6 +2,9 @@
 # Checks required environment variables
 -include env.check.mk
 
+# You must always use the Horizon name for architecture (`hzn architecture`)
+export ARCH ?= $(shell hzn architecture)
+
 # build, push, publish service all
 publish-all:
 	make -C src/mqtt
@@ -22,6 +25,9 @@ publish-all:
 #	make -C src/yologpu
 #	make -C src/yologpu push
 #	make -C src/yologpu publish-service
+
+publish-pattern:
+	hzn exchange pattern publish -f pattern/pattern-yolo-arch.json
 
 # add all policies 
 add-business-policy:

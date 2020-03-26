@@ -1,28 +1,28 @@
 {
-  "name": "pattern-$EDGE_OWNER.$EDGE_DEPLOY.yolo-arm",
+  "name": "pattern-$EDGE_OWNER.$EDGE_DEPLOY.yolo-$ARCH",
   "services": [
     {
       "serviceUrl": "$EDGE_OWNER.$EDGE_DEPLOY.mqtt2kafka",
       "serviceOrgid": "$HZN_ORG_ID",
-      "serviceArch": "arm",
+      "serviceArch": "$ARCH",
       "serviceVersions": [ { "version": "1.0.2" } ]
     },
     {
       "serviceUrl": "$EDGE_OWNER.$EDGE_DEPLOY.watcher",
       "serviceOrgid": "$HZN_ORG_ID",
-      "serviceArch": "arm",
+      "serviceArch": "$ARCH",
       "serviceVersions": [ { "version": "1.0.3" } ]
     },
     {
       "serviceUrl": "$EDGE_OWNER.$EDGE_DEPLOY.yolo",
       "serviceOrgid": "$HZN_ORG_ID",
-      "serviceArch": "arm",
+      "serviceArch": "$ARCH",
       "serviceVersions": [ { "version": "1.0.4" } ]
     },
     {
       "serviceUrl": "$EDGE_OWNER.$EDGE_DEPLOY.cam",
       "serviceOrgid": "$HZN_ORG_ID",
-      "serviceArch": "arm",
+      "serviceArch": "$ARCH",
       "serviceVersions": [ { "version": "1.0.2" } ]
     }
   ]
