@@ -22,6 +22,18 @@ publish-all:
 	make -C src/yolo
 	make -C src/yolo push
 	make -C src/yolo publish-service
+	make -C src/restcam
+	make -C src/restcam push
+	make -C src/restcam publish-service
+	make -C src/yolov3
+	make -C src/yolov3 push
+	make -C src/yolov3 publish-service
+	make -C src/app
+	make -C src/app push
+	make -C src/app publish-service
+	make -C src/watcher2
+	make -C src/watcher2 push
+	make -C src/watcher2 publish-service
 #	make -C src/yologpu
 #	make -C src/yologpu push
 #	make -C src/yologpu publish-service
@@ -35,4 +47,8 @@ add-business-policy:
 	make -C src/mqtt2kafka add-business-policy
 	make -C src/watcher add-business-policy
 	make -C src/yolo add-business-policy
+	make -C src/restcam add-business-policy
+	make -C src/yolov3 add-business-policy
+	make -C src/watcher2 add-business-policy
+	make -C src/app add-business-policy
 
