@@ -1,8 +1,8 @@
 {
-  "name": "pattern-$EDGE_OWNER.$EDGE_DEPLOY.yolo-$ARCH",
+  "name": "pattern-$EDGE_OWNER.$EDGE_DEPLOY.appmqtt.yolo-$ARCH",
   "services": [
     {
-      "serviceUrl": "$EDGE_OWNER.$EDGE_DEPLOY.mqtt2kafka",
+      "serviceUrl": "$EDGE_OWNER.$EDGE_DEPLOY.appmqtt",
       "serviceOrgid": "$HZN_ORG_ID",
       "serviceArch": "$ARCH",
       "serviceVersions": [ { "version": "1.0.2" } ]

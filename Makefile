@@ -42,17 +42,20 @@ publish-app-rest:
 #	make -C src/yologpu push
 #	make -C src/yologpu publish-service
 
-publish-pattern:
-	hzn exchange pattern publish -f pattern/pattern-yolo-arch.json
+publish-pattern-appmqtt:
+	hzn exchange pattern publish -f pattern/pattern-appmqtt-yolo-arch.json
+
+publish-pattern-apprest:
+	hzn exchange pattern publish -f pattern/pattern-apprest-yolo-arch.json
 
 # add all policies 
-add-business-policy-app-mqtt:
+add-business-policy-appmqtt:
 	make -C src/cam add-business-policy
 	make -C src/mqtt2kafka add-business-policy
 	make -C src/watcher add-business-policy
 	make -C src/yolo add-business-policy
 
-add-business-policy-app-rest:
+add-business-policy-apprest:
 	make -C src/restcam add-business-policy
 	make -C src/yolov3 add-business-policy
 	make -C src/watcher2 add-business-policy
