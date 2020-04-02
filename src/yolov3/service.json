@@ -9,7 +9,9 @@
   "requiredServices": [
     { "org": "$HZN_ORG_ID", "url": "$EDGE_OWNER.$EDGE_DEPLOY.restcam", "version": "1.0.0", "arch": "$ARCH" }
   ],
-  "userInput": [],
+  "userInput": [
+    { "name": "APP_NODE_NAME", "label": "App Device Node Name", "type": "string", "defaultValue": "" }
+  ],
   "deployment": {
     "services": {
       "$SERVICE_NAME": {

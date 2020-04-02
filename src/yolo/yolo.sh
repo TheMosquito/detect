@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Defaults
-if [ -z "${YOLO_DEVICENAME:-}" ]; then YOLO_DEVICENAME=""; fi
+if [ -z "${APP_NODE_NAME:-}" ]; then APP_NODE_NAME=""; fi
 if [ -z "${YOLO_ENTITY:-}" ]; then YOLO_ENTITY="person"; fi
 if [ -z "${YOLO_PERIOD:-}" ]; then YOLO_PERIOD=5; fi
 if [ -z "${YOLO_IN_TOPIC:-}" ]; then YOLO_IN_TOPIC="/cam"; fi
@@ -54,7 +54,7 @@ while true; do
     OUT_IMAGE_B64=$(base64 -w 0 -i "${OUT_JPG}")
 
     # Publish the encoded images to the MQTT broker (qos=0, fire and forget)
-    echo -n "{ \"detect\": { \"devicename\":\"${YOLO_DEVICENAME}\", \"tool\":\"yolo\", \"date\":\"$(date +%s)\", \"time\":\"${TIME}\", \"entity\":\"${YOLO_ENTITY}\", \"count\":${COUNT}, " > "${RTN_JSON}"
+    echo -n "{ \"detect\": { \"devicename\":\"${APP_NODE_NAME}\", \"tool\":\"yolo\", \"date\":\"$(date +%s)\", \"time\":\"${TIME}\", \"entity\":\"${YOLO_ENTITY}\", \"count\":${COUNT}, " > "${RTN_JSON}"
     echo -n "\"source\":\"${IN_IMAGE_B64}\", " >> "${RTN_JSON}"
     echo "\"image\":\"${OUT_IMAGE_B64}\" } }" >> "${RTN_JSON}"
     ${MQTT_PUB_COMMAND} --qos 0 -t ${YOLO_OUT_TOPIC} -f "${RTN_JSON}"

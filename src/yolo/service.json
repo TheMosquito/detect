@@ -10,7 +10,7 @@
     { "org": "$HZN_ORG_ID", "url": "$EDGE_OWNER.$EDGE_DEPLOY.mqtt", "version": "1.0.1", "arch": "$ARCH" }
   ],
   "userInput": [
-    { "name": "YOLO_DEVICENAME", "label": "Edge Device Name", "type": "string", "defaultValue": "" },
+    { "name": "APP_NODE_NAME", "label": "Edge Device Node Name", "type": "string", "defaultValue": "" },
     { "name": "YOLO_ENTITY", "label": "entity to detect", "type": "string", "defaultValue": "person" },
     { "name": "YOLO_PERIOD", "label": "sec between updates", "type": "int", "defaultValue": "0" },
     { "name": "YOLO_IN_TOPIC", "label": "MQTT input topic", "type": "int", "defaultValue": "/cam" },

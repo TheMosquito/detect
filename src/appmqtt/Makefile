@@ -1,4 +1,4 @@
-# The yolov3 detector
+# An example of yolo an a Horizon service
 
 # ----------------------------------------------------------------------------
 
@@ -29,31 +29,8 @@ add-business-policy:
 
 # Remove the local container image
 clean:
-	@docker rmi $(DOCKER_IMAGE_BASE)_$(ARCH):$(SERVICE_VERSION) 2>/dev/null || :
-	@rm -f .hzn.json.tmp.mk
-
-# ----------------------------------------------------------------------------
-
-dev:
-	-docker rm -f yolov3 2>/dev/null || :
-	docker run -it -v `pwd`:/outside \
-	   -p 5252:80 \
-	   -e APP_NODE_NAME=`hostname` \
-	   --name yolov3 --network mqtt-net --network-alias yolov3 \
-	   $(DOCKER_IMAGE_BASE)_$(ARCH):$(SERVICE_VERSION) /bin/bash
-
-test-yolov3:
-	-docker rm -f yolov3 2>/dev/null || :
-	docker run --rm -d \
-	   -p 5252:80 \
-	   -e APP_NODE_NAME="${APP_NODE_NAME}" \
-	   -e EVENTSTREAMS_BROKER_URLS="${EVENTSTREAMS_BROKER_URLS}" \
-	   -e EVENTSTREAMS_API_KEY="${EVENTSTREAMS_API_KEY}" \
-	   -e EVENTSTREAMS_ENHANCED_TOPIC="${EVENTSTREAMS_ENHANCED_TOPIC}" \
-	   --name yolov3 --network mqtt-net --network-alias yolov3 \
-	   $(DOCKER_IMAGE_BASE)_$(ARCH):$(SERVICE_VERSION)
-
-# ----------------------------------------------------------------------------
+	-docker rmi $(DOCKER_IMAGE_BASE)_$(ARCH):$(SERVICE_VERSION) 2> /dev/null || :
+	rm -f .hzn.json.tmp.mk
 
 # This imports the variables from hzn.json
 .hzn.json.tmp.mk: hzn.json

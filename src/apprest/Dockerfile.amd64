@@ -1,21 +1,27 @@
-FROM alpine:latest
+FROM python:3.7-alpine
 
 RUN apk update && apk add --no-cache \
   bash \
-  mosquitto \
-  mosquitto-clients \
   alpine-sdk \
   python \
   cmake \
   curl-dev \
   bsd-compat-headers \
   perl \
+  mosquitto-clients \
   jq \
   && rm -fr /tmp/*
 
+# Build and install kafka tools (should really use a 2-stage docker build here)
 RUN curl https://codeload.github.com/edenhill/kafkacat/tar.gz/master | tar xzf - && cd kafkacat-* && bash ./bootstrap.sh
 RUN make -C /kafkacat-master bin-install
 
-COPY mqtt2kafka.sh /
+# Install requests (REST API client)
+RUN pip install requests
+
+# Copy over the source
+COPY apprest.py /
 WORKDIR /
-CMD /mqtt2kafka.sh
+
+# Run the daemon
+CMD python apprest.py

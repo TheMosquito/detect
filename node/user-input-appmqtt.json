@@ -2,12 +2,12 @@
   "services": [
     {
       "org": "$HZN_ORG_ID",
-      "url": "$EDGE_OWNER.$EDGE_DEPLOY.mqtt2kafka",
+      "url": "$EDGE_OWNER.$EDGE_DEPLOY.appmqtt",
       "versionRange": "[0.0.0,INFINITY)",
       "variables": {
-          "EVTSTREAMS_BROKER_URL": "$EVTSTREAMS_BROKER_URL",
-          "EVTSTREAMS_API_KEY": "$EVTSTREAMS_API_KEY",
-          "EVTSTREAMS_TOPIC": "$EVTSTREAMS_TOPIC"
+        "EVENTSTREAMS_BROKER_URLS" : "$EVENTSTREAMS_BROKER_URLS",
+        "EVENTSTREAMS_API_KEY"     : "$EVENTSTREAMS_API_KEY",
+        "EVENTSTREAMS_BASIC_TOPIC" : "$EVENTSTREAMS_BASIC_TOPIC"
       }
     },
     {
@@ -15,7 +15,7 @@
       "url": "$EDGE_OWNER.$EDGE_DEPLOY.yolo",
       "versionRange": "[0.0.0,INFINITY)",
       "variables": {
-          "YOLO_DEVICENAME": "$DEVICENAME"
+          "APP_NODE_NAME": "$APP_NODE_NAME"
       }
     }
   ]

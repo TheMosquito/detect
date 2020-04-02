@@ -15,18 +15,21 @@ import base64
 import requests
 
 # Configuration from the environment
-HZN_DEVICE_ID = os.environ['HZN_DEVICE_ID']
+#APP_NODE_NAME = os.environ['APP_NODE_NAME']
+YOLO_HOST = os.environ['YOLO_HOST']
+CAM_HOST = os.environ['CAM_HOST']
+MQTT_HOST = os.environ['MQTT_HOST']
 EVENTSTREAMS_BROKER_URLS = os.environ['EVENTSTREAMS_BROKER_URLS']
 EVENTSTREAMS_API_KEY = os.environ['EVENTSTREAMS_API_KEY']
-EVENTSTREAMS_PUB_TOPIC = os.environ['EVENTSTREAMS_PUB_TOPIC']
+EVENTSTREAMS_ENHANCED_TOPIC = os.environ['EVENTSTREAMS_ENHANCED_TOPIC']
 
 # Additional configuration constants
 TEMP_FILE = '/tmp/yolov3.json'
-YOLO_URL = 'http://yolov3:80/detect?kind=json&url=http%3A%2F%2Frestcam'
+YOLO_URL = 'http://' + YOLO_HOST + ':80/detect?kind=json&url=http://' + CAM_HOST
 MQTT_PUB_TOPIC = '/detect'
-MQTT_PUB_COMMAND = 'mosquitto_pub -h mqtt -p 1883'
+MQTT_PUB_COMMAND = 'mosquitto_pub -h ' + MQTT_HOST  + ' -p 1883 '
 DEBUG_PUB_COMMAND = MQTT_PUB_COMMAND + ' -t ' + MQTT_PUB_TOPIC + ' -f '
-KAFKA_PUB_COMMAND = 'kafkacat -P -b ' + EVENTSTREAMS_BROKER_URLS + ' -X api.version.request=true -X security.protocol=sasl_ssl -X sasl.mechanisms=PLAIN -X sasl.username=token -X sasl.password="' + EVENTSTREAMS_API_KEY + '" -t ' + EVENTSTREAMS_PUB_TOPIC + ' '
+KAFKA_PUB_COMMAND = 'kafkacat -P -b ' + EVENTSTREAMS_BROKER_URLS + ' -X api.version.request=true -X security.protocol=sasl_ssl -X sasl.mechanisms=PLAIN -X sasl.username=token -X sasl.password="' + EVENTSTREAMS_API_KEY + '" -t ' + EVENTSTREAMS_ENHANCED_TOPIC + ' '
 SLEEP_BETWEEN_CALLS = 0.1
 
 # To log or not to log, that is the question

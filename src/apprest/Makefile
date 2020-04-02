@@ -1,4 +1,4 @@
-# An example of yolo an a Horizon service
+# A driver that calls the yolov3 detector, and pushed data to both mqtt and kafka
 
 # ----------------------------------------------------------------------------
 
@@ -29,16 +29,8 @@ add-business-policy:
 
 # Remove the local container image
 clean:
-	-docker rmi $(DOCKER_IMAGE_BASE)_$(ARCH):$(SERVICE_VERSION) 2> /dev/null || :
-	rm -f .hzn.json.tmp.mk
-
-# ----------------------------------------------------------------------------
-
-test-kafka:
-	-docker rm -f test-kafka 2>/dev/null || :
-	docker run --rm -d -e HZN_DEVICE_ID="${HZN_DEVICE_ID}" -e MQTT_TOPIC="${MQTT_TOPIC}" -e EVTSTREAMS_TOPIC="${EVTSTREAMS_TOPIC}" -e EVTSTREAMS_API_KEY="${EVTSTREAMS_API_KEY}" -e EVTSTREAMS_BROKER_URL="${EVTSTREAMS_BROKER_URL}" --name test-kafka --network mqtt-net --network-alias kafka -v `pwd`:/outside $(DOCKER_IMAGE_BASE)_$(ARCH):$(SERVICE_VERSION)
-
-# ----------------------------------------------------------------------------
+	@docker rmi $(DOCKER_IMAGE_BASE)_$(ARCH):$(SERVICE_VERSION) 2>/dev/null || :
+	@rm -f .hzn.json.tmp.mk
 
 # This imports the variables from hzn.json
 .hzn.json.tmp.mk: hzn.json

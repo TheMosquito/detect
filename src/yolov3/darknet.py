@@ -329,7 +329,7 @@ if __name__ == "__main__":
     for cls in entity_raw:
       entity_data.append(entity_raw[cls])
     detect_data = {}
-    detect_data['deviceid'] = os.environ['HZN_DEVICE_ID']
+    detect_data['deviceid'] = os.environ['APP_NODE_NAME']
     detect_data['tool'] = 'yolov3-tiny'
     detect_data['date'] = int(time.time())
     detect_data['camtime'] = round(cam_end - cam_start, 3)

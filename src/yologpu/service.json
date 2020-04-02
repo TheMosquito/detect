@@ -11,8 +11,8 @@
   ],
   "userInput": [
     {
-      "name": "YOLO_DEVICENAME",
-      "label": "Edge Device Name",
+      "name": "APP_NODE_NAME",
+      "label": "Edge Device NodeName",
       "type": "string",
       "defaultValue": ""
     },

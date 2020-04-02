@@ -26,7 +26,7 @@ fn_chk_env() {
 fn_register_with_pattern() {
     echo "Registering with pattern... "
 
-    . ./$envvar
+    . $envvar
 
     fn_chk_env
 
@@ -37,18 +37,18 @@ fn_register_with_pattern() {
 fn_register_with_policy() {
     echo "Registering with policy... "
 
-    . ./$envvar
+    . $envvar
 
     fn_chk_env
 
     hzn exchange node create -n $HZN_EXCHANGE_NODE_AUTH
-    hzn register --policy=node_policy.json --input-file ./user-input-yolo.json
+    hzn register --policy=../node/node_policy_apprest.json --input-file ../node/user-input-apprest.json
 }
 
 fn_unregister() {
     echo "Un-registering... "
 
-    . ./$envvar
+    . $envvar
 
     fn_chk_env
 

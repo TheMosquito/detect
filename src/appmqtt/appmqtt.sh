@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # For development
-if [ -z "${HZN_DEVICE_ID:-}" ]; then HZN_DEVICE_ID="unnamed"; fi
+if [ -z "${APP_NODE_NAME:-}" ]; then APP_NODE_NAME="unnamed"; fi
 if [ -z "${MQTT_HOST:-}" ]; then MQTT_HOST=""; fi
 
 # The command to subscribe and get one message from the local MQTT broker
@@ -31,19 +31,19 @@ checkrc() {
 
 echo "Checking environment variables required to publish to IBM Event Streams:"
 checkRequiredEnvVar "MQTT_TOPIC"
-checkRequiredEnvVar "EVTSTREAMS_TOPIC"
-checkRequiredEnvVar "EVTSTREAMS_API_KEY"
-checkRequiredEnvVar "EVTSTREAMS_BROKER_URL"
-#EVTSTREAMS_USERNAME="${EVTSTREAMS_API_KEY:0:16}"
-#EVTSTREAMS_PASSWORD="${EVTSTREAMS_API_KEY:16}"
-EVTSTREAMS_USERNAME="token"
-EVTSTREAMS_PASSWORD="${EVTSTREAMS_API_KEY}"
+checkRequiredEnvVar "EVENTSTREAMS_BASIC_TOPIC"
+checkRequiredEnvVar "EVENTSTREAMS_API_KEY"
+checkRequiredEnvVar "EVENTSTREAMS_BROKER_URLS"
+#EVENTTSTREAMS_USERNAME="${EVENTSTREAMS_API_KEY:0:16}"
+#EVENTSTREAMS_PASSWORD="${EVENTSTREAMS_API_KEY:16}"
+EVENTSTREAMS_USERNAME="token"
+EVENTSTREAMS_PASSWORD="${EVENTSTREAMS_API_KEY}"
 
 # The only special chars allowed in the topic are: -._
-EVTSTREAMS_TOPIC="${EVTSTREAMS_TOPIC//[@#%()+=:,<>]/_}"
+EVENTSTREAMS_BASIC_TOPIC="${EVENTSTREAMS_BASIC_TOPIC//[@#%()+=:,<>]/_}"
 # Translating slashes doesn't work in this bash substitute in alpine, so use tr
-EVTSTREAMS_TOPIC=$(echo "$EVTSTREAMS_TOPIC" | tr / _)
-echo "Will publish to topic: $EVTSTREAMS_TOPIC"
+EVENTSTREAMS_BASIC_TOPIC=$(echo "$EVENTSTREAMS_BASIC_TOPIC" | tr / _)
+echo "Will publish to topic: $EVENTSTREAMS_BASIC_TOPIC"
 
 echo 'Starting infinite loop to read from MQTT and publish to Kafka...'
 while true; do
@@ -54,11 +54,11 @@ while true; do
 
   # Modify IN_JSON into OUT_JSON to work with the existing backend IBM function
   TMP_JSON=$(echo "${IN_JSON}" | sed 's/"detect":/"yolo":/')
-  OUT_JSON="{\"hzn\":{\"device_id\":\"${HZN_DEVICE_ID}\"},\"yolo2msghub\":${TMP_JSON}}"
+  OUT_JSON="{\"hzn\":{\"device_id\":\"${APP_NODE_NAME}\"},\"yolo2msghub\":${TMP_JSON}}"
   
   # Send JSON data to IBM Cloud Event Streams
   #echo "${OUT_JSON}"
-  echo "${OUT_JSON}" | kafkacat -P -b $EVTSTREAMS_BROKER_URL -X api.version.request=true -X security.protocol=sasl_ssl -X sasl.mechanisms=PLAIN -X sasl.username=$EVTSTREAMS_USERNAME -X sasl.password=$EVTSTREAMS_PASSWORD -t $EVTSTREAMS_TOPIC
+  echo "${OUT_JSON}" | kafkacat -P -b $EVENTSTREAMS_BROKER_URLS -X api.version.request=true -X security.protocol=sasl_ssl -X sasl.mechanisms=PLAIN -X sasl.username=$EVENTSTREAMS_USERNAME -X sasl.password=$EVENTSTREAMS_PASSWORD -t $EVENTSTREAMS_BASIC_TOPIC
   checkrc $? "kafkacat" "continue"
 
 done

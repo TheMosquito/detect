@@ -25,7 +25,7 @@
 	    "serviceUrl": "$EDGE_OWNER.$EDGE_DEPLOY.yolov3",
 	    "serviceVersionRange": "[0.0.0,INFINITY)",
 	    "inputs": [
-		{ "name" : "YOLO_DEVICENAME", "value" : "RPI_TEST"  }
+		{ "name" : "APP_NODE_NAME", "value" : "RPI_TEST"  }
 	    ]
 	}
     ]

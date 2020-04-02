@@ -9,6 +9,6 @@ COPY keys/* /etc/apk/keys/
 COPY kafkacat-*.apk /
 RUN apk --no-cache add /kafkacat-*.apk && rm kafkacat-*.apk
 
-COPY mqtt2kafka.sh /
+COPY appmqtt.sh /
 WORKDIR /
-CMD /mqtt2kafka.sh
+CMD /appmqtt.sh
