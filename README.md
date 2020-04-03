@@ -36,28 +36,42 @@ Enviornment variables EDGE_OWNER, EDGE_DEPLOY provide flexiblity for different d
     export HZN_ORG_ID=mycluster
     export HZN_EXCHANGE_USER_AUTH=iamapikey:<iam-api-key>
     export HZN_EXCHANGE_NODE_AUTH="<UNIQUE-NODE-ANME>:<node-token>"
-    export DEVICENAME=<UNIQUE-NODE-ANME>
+    export APP_NODE_NAME=<UNIQUE-NODE-ANME>
 
 ### Eventstream  
 
-    export EVTSTREAMS_TOPIC=<your-event-stream-topic>
-    export EVTSTREAMS_API_KEY=<your-event-stream-api-key>
-    export EVTSTREAMS_BROKER_URL="your-event-stream-brokers"
+    export EVENTSTREAMS_BASIC_TOPIC=<your-event-stream-topic>
+    export EVENTSTREAMS_ENHANCED_TOPIC=<your-event-stream-topic>
+    export EVENTSTREAMS_API_KEY=<your-event-stream-api-key>
+    export EVENTSTREAMS_BROKER_URLS="your-event-stream-brokers"
 
 ### Create node
 
     hzn exchange node create -n $HZN_EXCHANGE_NODE_AUTH
 
 ### Register node
+Use script to register node
 
-Using policy
+#### apprest (REST based yolov3)
+ 
+policy
+    
+    ./node_register_apprest.sh -e ~/agent/yolo/apprest/ieam-dev/ENV_YOLO_REST_DEV -r -l
+    
+pattern
+    
+    ./node_register_apprest.sh -e ~/agent/yolo/apprest/ieam-dev/ENV_YOLO_REST_DEV -r -p
+    
+#### appmqtt (MQTT based yolo)
 
-    hzn register --policy=node_policy.json --input-file ./user-input-yolo.json
-
-Using pattern
-
-    hzn register --pattern "${HZN_ORG_ID}/pattern-${EDGE_OWNER}.${EDGE_DEPLOY}.yolo-$ARCH" --input-file ./user-input-yolo.json --policy=node_policy_privileged.json
-
+policy
+   
+    ./node_register_appmqtt.sh -e ~/agent/yolo/appmqtt/ieam-dev/ENV_YOLO_MQTT_DEV -r -l
+    
+pattern
+    
+    ./node_register_appmqtt.sh -e ~/agent/yolo/appmqtt/ieam-dev/ENV_YOLO_MQTT_DEV -r -p
+   
 ### Architecture
 A collection of Services to implement object detection for open-horizon
 
