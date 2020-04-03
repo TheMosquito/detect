@@ -50,10 +50,10 @@ Enviornment variables EDGE_OWNER, EDGE_DEPLOY provide flexiblity for different d
     hzn exchange node create -n $HZN_EXCHANGE_NODE_AUTH
 
 ### Register node
+Use script to register node
+
     appmqtt (MQTT based yolo) 
     apprest (REST based yolov3)
-    
-    Use script to register node
     
 Using policy
   
