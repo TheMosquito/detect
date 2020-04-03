@@ -55,20 +55,23 @@ Use script to register node
 #### apprest (REST based yolov3)
  
 policy
+    
     ./node_register_apprest.sh -e ~/agent/yolo/apprest/ieam-dev/ENV_YOLO_REST_DEV -r -l
     
 pattern
+    
     ./node_register_apprest.sh -e ~/agent/yolo/apprest/ieam-dev/ENV_YOLO_REST_DEV -r -p
     
 #### appmqtt (MQTT based yolo)
 
 policy
+   
     ./node_register_appmqtt.sh -e ~/agent/yolo/appmqtt/ieam-dev/ENV_YOLO_MQTT_DEV -r -l
     
 pattern
+    
     ./node_register_appmqtt.sh -e ~/agent/yolo/appmqtt/ieam-dev/ENV_YOLO_MQTT_DEV -r -p
    
-
 ### Architecture
 A collection of Services to implement object detection for open-horizon
 
