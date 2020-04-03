@@ -1,4 +1,3 @@
-## README
 ### Personalization of build, publish and use of IEAM system in a shared environment
 #### Introduction
 Using a shared instance creates many challenges when services, patterns and policies need to be published in a common exchange without multiple developers clobbering over each other.  
