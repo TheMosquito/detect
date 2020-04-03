@@ -1,0 +1,12 @@
+{
+  "name": "pattern-$EDGE_OWNER.$EDGE_DEPLOY.apprest.yolo-$ARCH",
+  "services": [
+    {
+      "serviceUrl": "$EDGE_OWNER.$EDGE_DEPLOY.apprest",
+      "serviceOrgid": "$HZN_ORG_ID",
+      "serviceArch": "$ARCH",
+      "serviceVersions": [ { "version": "1.0.3" } ]
+    }
+  ]
+}
+

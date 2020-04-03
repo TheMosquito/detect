@@ -30,8 +30,10 @@ fn_register_with_pattern() {
 
     fn_chk_env
 
+    ARCH=`hzn architecture`
+
     hzn exchange node create -n $HZN_EXCHANGE_NODE_AUTH
-    hzn register --pattern "${HZN_ORG_ID}/pattern-${EDGE_OWNER}.${EDGE_DEPLOY}.yolo-arm" --input-file ./user-input-yolo.json --policy=node_policy_privileged.json
+    hzn register --pattern "${HZN_ORG_ID}/pattern-${EDGE_OWNER}.${EDGE_DEPLOY}.apprest.yolo-${ARCH}" --input-file ../node/user-input-apprest.json --policy=../node/node_policy_privileged.json
 }
 
 fn_register_with_policy() {

@@ -4,8 +4,8 @@
       { "name": "deploy",  "value": "$EDGE_DEPLOY" },
       { "name": "camera",  "value": "1.0.2" },
       { "name": "watcher", "value": "1.0.3" },
-      { "name": "kafka",   "value": "1.0.2" },
       { "name": "yolo",    "value": "1.0.4" },
+      { "name": "appmqtt", "value": "1.0.2" },
       { "name": "openhorizon.allowPrivileged", "value": true }
   ],
   "constraints": [

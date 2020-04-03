@@ -32,15 +32,17 @@ publish-app-rest:
 	make -C src/yolov3
 	make -C src/yolov3 push
 	make -C src/yolov3 publish-service
-	make -C src/app
-	make -C src/app push
-	make -C src/app publish-service
+	make -C src/apprest
+	make -C src/apprest push
+	make -C src/apprest publish-service
 	make -C src/watcher2
 	make -C src/watcher2 push
 	make -C src/watcher2 publish-service
 #	make -C src/yologpu
 #	make -C src/yologpu push
 #	make -C src/yologpu publish-service
+
+publish-pattern: publish-pattern-appmqtt publish-pattern-apprest
 
 publish-pattern-appmqtt:
 	hzn exchange pattern publish -f pattern/pattern-appmqtt-yolo-arch.json
@@ -49,15 +51,17 @@ publish-pattern-apprest:
 	hzn exchange pattern publish -f pattern/pattern-apprest-yolo-arch.json
 
 # add all policies 
+add-business-policy: add-business-policy-appmqtt add-business-policy-apprest
+
 add-business-policy-appmqtt:
 	make -C src/cam add-business-policy
-	make -C src/mqtt2kafka add-business-policy
-	make -C src/watcher add-business-policy
 	make -C src/yolo add-business-policy
+	make -C src/watcher add-business-policy
+	make -C src/appmqtt add-business-policy
 
 add-business-policy-apprest:
 	make -C src/restcam add-business-policy
 	make -C src/yolov3 add-business-policy
 	make -C src/watcher2 add-business-policy
-	make -C src/app add-business-policy
+	make -C src/apprest add-business-policy
 
