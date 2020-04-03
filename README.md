@@ -57,13 +57,14 @@ Use script to register node
     
 Using policy
   
-    ./node_register_appmqtt.sh -e ~/agent/yolo/appmqtt/ieam-dev/ENV_YOLO_DEV -r -l
-    ./node_register_apprest.sh -e ~/agent/yolo/apprest/ieam-dev/ENV_YOLO_DEV -r -l
+    ./node_register_apprest.sh -e ~/agent/yolo/apprest/ieam-dev/ENV_YOLO_REST_DEV -r -l
+ 
 
 Using pattern
-
-    ./node_register_appmqtt.sh -e ~/agent/yolo/appmqtt/ieam-dev/ENV_YOLO_DEV -r -p
-    ./node_register_apprest.sh -e ~/agent/yolo/apprest/ieam-dev/ENV_YOLO_DEV -r -p
+ 
+    ./node_register_apprest.sh -e ~/agent/yolo/apprest/ieam-dev/ENV_YOLO_REST_DEV -r -p
+ 
+   
 
 ### Architecture
 A collection of Services to implement object detection for open-horizon
