@@ -21,6 +21,10 @@ fn_chk_env() {
     if [ -z $HZN_EXCHANGE_USER_AUTH ]; then 
 	echo "Must set HZN_EXCHANGE_USER_AUTH in ENV file "
     fi
+
+    if [ -z $APP_NODE_NAME ]; then 
+	echo "Must set $APP_NODE_NAME in ENV file "
+    fi
 }
 
 fn_register_with_pattern() {

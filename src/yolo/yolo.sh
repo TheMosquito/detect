@@ -35,7 +35,8 @@ while true; do
 
     # Identify from tiny set
     /darknet/darknet detector test cfg/voc.data cfg/yolov2-tiny-voc.cfg yolov2-tiny-voc.weights "${IN_JPG}" > "${OUT_DATA}" 2>/dev/null
-
+#    /darknet/darknet detector test cfg/yolov3-voc.cfg cfg/yolov3-tiny.cfg yolov3-tiny.weights "${IN_JPG}" > "${OUT_DATA}" 2>/dev/null
+    
     # Retain the annotated image
     cp "${OUT_JPG}" "${RTN_JPG}"
 

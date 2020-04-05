@@ -32,12 +32,12 @@ publish-app-rest:
 	make -C src/yolov3
 	make -C src/yolov3 push
 	make -C src/yolov3 publish-service
-	make -C src/apprest
-	make -C src/apprest push
-	make -C src/apprest publish-service
 	make -C src/watcher2
 	make -C src/watcher2 push
 	make -C src/watcher2 publish-service
+	make -C src/apprest
+	make -C src/apprest push
+	make -C src/apprest publish-service
 #	make -C src/yologpu
 #	make -C src/yologpu push
 #	make -C src/yologpu publish-service

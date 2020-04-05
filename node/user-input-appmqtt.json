@@ -5,6 +5,7 @@
       "url": "$EDGE_OWNER.$EDGE_DEPLOY.appmqtt",
       "versionRange": "[0.0.0,INFINITY)",
       "variables": {
+        "APP_NODE_NAME": "$APP_NODE_NAME",
         "EVENTSTREAMS_BROKER_URLS" : "$EVENTSTREAMS_BROKER_URLS",
         "EVENTSTREAMS_API_KEY"     : "$EVENTSTREAMS_API_KEY",
         "EVENTSTREAMS_BASIC_TOPIC" : "$EVENTSTREAMS_BASIC_TOPIC"
