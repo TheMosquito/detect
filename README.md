@@ -1,6 +1,6 @@
 ### Personalization of build, publish and use of IEAM system in a shared environment
 #### Introduction
-Using a shared instance creates many challenges when services, patterns and policies need to be published in a common exchange without multiple developers clobbering over each other.  
+Using a shared instance creates several challenges when services, patterns and policies need to be published in a common exchange without multiple developers clobbering over each other.  
 
 - Developers need to identify their service, pattern and policies among many similar assets (concept of owner)
 - Developers may have project for demo, dev, test and more ( group the assets)
