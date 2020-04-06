@@ -38,7 +38,7 @@ Enviornment variables EDGE_OWNER, EDGE_DEPLOY provide flexiblity for different d
     export HZN_EXCHANGE_NODE_AUTH="<UNIQUE-NODE-ANME>:<node-token>"
     export APP_NODE_NAME=<UNIQUE-NODE-ANME>
 
-### Eventstream  
+### Event Streams  
 
     export EVENTSTREAMS_BASIC_TOPIC=<your-event-stream-topic>
     export EVENTSTREAMS_ENHANCED_TOPIC=<your-event-stream-topic>
