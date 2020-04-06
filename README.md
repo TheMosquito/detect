@@ -51,7 +51,7 @@ Enviornment variables EDGE_OWNER, EDGE_DEPLOY provide flexiblity for different d
 ### Register node
 Use script to register node
 
-#### apprest (REST based yolov3) - NUC (amd64) Nvidia(arm64) 
+#### apprest (REST based yolov3) - NUC(amd64), Nvidia Jetson Nano(arm64) 
  
 policy
     
@@ -61,7 +61,7 @@ pattern
     
     ./node_register_apprest.sh -e ~/agent/yolo/apprest/ieam-dev/ENV_YOLO_REST_DEV -r -p
     
-#### appmqtt (MQTT based yolo) -  RPI (arm) NUC (amd64) Nvidia(arm64) 
+#### appmqtt (MQTT based yolo) -  RPI(arm), NUC(amd64), Nvidia Jetson Nano(arm64) 
 
 policy
    
