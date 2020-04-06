@@ -56,22 +56,26 @@ Use script to register node
  
 policy
     
-    ./node_register_apprest.sh -e ~/agent/yolo/apprest/ieam-dev/ENV_YOLO_REST_DEV -r -l
+    ./node_register_apprest.sh -e ~/agent/yolo/apprest/<ieam-instance>/ENV_YOLO_REST_DEV -r -l
     
 pattern
     
-    ./node_register_apprest.sh -e ~/agent/yolo/apprest/ieam-dev/ENV_YOLO_REST_DEV -r -p
+    ./node_register_apprest.sh -e ~/agent/yolo/apprest/<ieam-instance>/ENV_YOLO_REST_DEV -r -p
     
 #### appmqtt (MQTT based yolo) -  RPI(arm), NUC(amd64), Nvidia Jetson Nano(arm64) 
 
 policy
    
-    ./node_register_appmqtt.sh -e ~/agent/yolo/appmqtt/ieam-dev/ENV_YOLO_MQTT_DEV -r -l
+    ./node_register_appmqtt.sh -e ~/agent/yolo/appmqtt/<ieam-instance>/ENV_YOLO_MQTT_DEV -r -l
     
 pattern
     
-    ./node_register_appmqtt.sh -e ~/agent/yolo/appmqtt/ieam-dev/ENV_YOLO_MQTT_DEV -r -p
+    ./node_register_appmqtt.sh -e ~/agent/yolo/appmqtt/<ieam-instance>/ENV_YOLO_MQTT_DEV -r -p
    
+#### Example
+
+
+
 ### Architecture
 A collection of Services to implement object detection for open-horizon
 
