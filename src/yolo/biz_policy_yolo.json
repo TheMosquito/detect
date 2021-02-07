@@ -1,0 +1,32 @@
+{
+    "label": "biz-policy-yolo-arm",
+    "description": "A yolo Business Policy",
+    "service": {
+	"name": "$EDGE_OWNER.$EDGE_DEPLOY.yolo",
+	"org": "$HZN_ORG_ID",
+	"arch": "$ARCH",
+	"serviceVersions": [
+	    {
+		"version": "1.0.4",
+		"priority":{}
+	    }
+	]
+    },
+    "properties": [
+    ],
+    "constraints": [
+	"owner == $EDGE_OWNER",
+	"deploy == $EDGE_DEPLOY",
+	"yolo == 1.0.4"
+    ],
+    "userInput": [
+	{
+	    "serviceOrgid": "$HZN_ORG_ID",
+	    "serviceUrl": "$EDGE_OWNER.$EDGE_DEPLOY.yolo",
+	    "serviceVersionRange": "[0.0.0,INFINITY)",
+	    "inputs": [
+		{ "name" : "APP_NODE_NAME", "value" : "RPI_TEST"  }
+	    ]
+	}
+    ]
+}

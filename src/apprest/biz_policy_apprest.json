@@ -1,0 +1,24 @@
+{
+    "label": "biz-policy-apprest-$ARCH",
+    "description": "A biz policy for rest based app on $ARCH",
+    "service": {
+	"name": "$EDGE_OWNER.$EDGE_DEPLOY.apprest",
+	"org": "$HZN_ORG_ID",
+	"arch": "$ARCH",
+	"serviceVersions": [
+	    {
+		"version": "1.0.3",
+		"priority":{}
+	    }
+	]
+    },
+    "properties": [
+    ],
+    "constraints": [
+	"owner == $EDGE_OWNER",
+	"deploy == $EDGE_DEPLOY",
+	"apprest == 1.0.3"
+    ],
+    "userInput": [
+    ]
+}

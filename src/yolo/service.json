@@ -1,0 +1,30 @@
+{
+  "org": "$HZN_ORG_ID",
+  "label": "$SERVICE_NAME for $ARCH",
+  "public": true,
+  "url": "$SERVICE_NAME",
+  "version": "$SERVICE_VERSION",
+  "arch": "$ARCH",
+  "sharable": "singleton",
+  "requiredServices": [ 
+    { "org": "$HZN_ORG_ID", "url": "$EDGE_OWNER.$EDGE_DEPLOY.mqtt", "version": "1.0.1", "arch": "$ARCH" }
+  ],
+  "userInput": [
+    { "name": "APP_NODE_NAME", "label": "Edge Device Node Name", "type": "string", "defaultValue": "" },
+    { "name": "YOLO_ENTITY", "label": "entity to detect", "type": "string", "defaultValue": "person" },
+    { "name": "YOLO_PERIOD", "label": "sec between updates", "type": "int", "defaultValue": "0" },
+    { "name": "YOLO_IN_TOPIC", "label": "MQTT input topic", "type": "int", "defaultValue": "/cam" },
+    { "name": "YOLO_OUT_TOPIC", "label": "MQTT output topic", "type": "int", "defaultValue": "/detect" },
+    { "name": "MQTT_HOST", "label": "MQTT host", "type": "string", "defaultValue": "$EDGE_OWNER.$EDGE_DEPLOY.mqtt" }
+  ],
+  "deployment": {
+    "services": {
+      "$SERVICE_NAME": {
+        "image": "${DOCKER_IMAGE_BASE}_$ARCH:$SERVICE_VERSION"
+      }
+    }
+  },
+  "tmpfs": {
+    "size": 8192000
+  }
+}

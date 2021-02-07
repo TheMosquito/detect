@@ -1,0 +1,29 @@
+{
+  "org": "$HZN_ORG_ID",
+  "label": "$SERVICE_NAME for $ARCH",
+  "url": "$SERVICE_NAME",
+  "version": "$SERVICE_VERSION",
+  "arch": "$ARCH",
+  "public": true,
+  "sharable": "singleton",
+  "requiredServices": [
+      { "org": "$HZN_ORG_ID", "url": "$EDGE_OWNER.$EDGE_DEPLOY.yolov3", "version": "1.0.1", "arch": "$ARCH" },
+      { "org": "$HZN_ORG_ID", "url": "$EDGE_OWNER.$EDGE_DEPLOY.mqtt", "version": "1.0.1", "arch": "$ARCH" }
+  ],
+  "userInput": [
+      { "name": "EVENTSTREAMS_BROKER_URLS", "label": "", "type": "string", "defaultValue": "" },
+      { "name": "EVENTSTREAMS_API_KEY", "label": "", "type": "string", "defaultValue": "" },
+      { "name": "EVENTSTREAMS_ENHANCED_TOPIC", "label": "", "type": "string", "defaultValue": "" }, 
+      { "name": "YOLO_HOST", "label": "yolo host", "type": "string", "defaultValue": "$EDGE_OWNER.$EDGE_DEPLOY.yolov3" },
+      { "name": "CAM_HOST", "label": "cam host", "type": "string", "defaultValue": "$EDGE_OWNER.$EDGE_DEPLOY.restcam" },
+      { "name": "MQTT_HOST", "label": "mqtt host", "type": "string", "defaultValue": "$EDGE_OWNER.$EDGE_DEPLOY.mqtt" }
+ ],
+  "deployment": {
+    "services": {
+      "$SERVICE_NAME": {
+        "image": "${DOCKER_IMAGE_BASE}_$ARCH:$SERVICE_VERSION"
+      }
+    }
+  }
+}
+
